@@ -11,6 +11,7 @@ plugins {
 	id 'checkstyle'
     id "com.diffplug.spotless" version "6.13.0"
 	id 'java'
+	id "io.toolebox.git-versioner" version "1.6.7"
 }
 
 repositories {
@@ -28,6 +29,9 @@ dependencies {
 
     // This dependency is used by the application.
     implementation libs.guava
+    
+	implementation 'org.telegram:telegrambots:6.9.0'
+	implementation 'com.squareup.retrofit2:retrofit:2.3.0'
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
@@ -56,6 +60,20 @@ jar{
 
 	duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
+
+versioner {
+	pattern {
+        pattern = "%M.%m.%p"
+    }
+
+    startFrom {
+        major = 0
+        minor = 1
+        patch = 0
+    }
+}
+
+versioner.apply()
 
 application {
     // Define the main class for the application.
