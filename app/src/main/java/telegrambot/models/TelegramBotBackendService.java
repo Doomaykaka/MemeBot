@@ -6,6 +6,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface TelegramBotBackendService {
-    @GET("/media")
-    Call<ResponseBody> getMedia(@Query("as_attachment") boolean asAttachment);
+	@GET("/media")
+	Call<ResponseBody> getMedia(@Query("as_attachment") boolean asAttachment);
 }
