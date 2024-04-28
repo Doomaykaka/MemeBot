@@ -4,9 +4,19 @@
 package telegrambot;
 
 import telegrambot.bot.BotInitializer;
+import telegrambot.config.Config;
 
 public class App {
+    private static Config botConfig;
+
     public static void main(String[] args) {
+        botConfig = new Config();
+        botConfig.readConfig();
+
         BotInitializer.initialize();
+    }
+
+    public static Config getBotConfig() {
+        return botConfig;
     }
 }

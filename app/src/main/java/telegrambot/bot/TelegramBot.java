@@ -6,14 +6,20 @@ import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+import telegrambot.App;
+
 public class TelegramBot extends TelegramLongPollingBot {
 
     private RandomPhotoSenderThread senderThread;
-    private final long CHAT_ID = -938033073;
-    private final String BOT_USERNAME = "MyAmazingBot";
-    private final String BOT_TOKEN = "7013070541:AAFDjrkuwJGaqPoC_Jxel7VpT3fmdOccwak";
+    private final long CHAT_ID;
+    private final String BOT_USERNAME;
+    private final String BOT_TOKEN;
 
     public TelegramBot() {
+        CHAT_ID = App.getBotConfig().getChatId();
+        BOT_USERNAME = App.getBotConfig().getBotUsername();
+        BOT_TOKEN = App.getBotConfig().getBotToken();
+        
         if (senderThread == null) {
             senderThread = new RandomPhotoSenderThread(this);
             senderThread.start();

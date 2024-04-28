@@ -5,6 +5,7 @@ import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 import retrofit2.Retrofit;
+import telegrambot.App;
 import telegrambot.models.TelegramBotBackendService;
 
 public class BotInitializer {
@@ -17,7 +18,8 @@ public class BotInitializer {
 
     private static void initializeBackendHttpClient() {
         OkHttpClient httpClient = new OkHttpClient.Builder().build();
-        Retrofit retrofitClient = new Retrofit.Builder().client(httpClient).baseUrl("https://memebot.v01d.ru/").build();
+        String botBackendURL = App.getBotConfig().getBotBackendUrl();
+        Retrofit retrofitClient = new Retrofit.Builder().client(httpClient).baseUrl(botBackendURL).build();
 
         backendHttpClientService = retrofitClient.create(TelegramBotBackendService.class);
     }
