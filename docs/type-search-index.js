@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"telegrambot","l":"App"},{"p":"telegrambot.bot","l":"BotInitializer"},{"p":"telegrambot.bot","l":"RandomPhotoSenderThread"},{"p":"telegrambot.bot","l":"TelegramBot"},{"p":"telegrambot.models","l":"TelegramBotBackendService"}];updateSearchResults();

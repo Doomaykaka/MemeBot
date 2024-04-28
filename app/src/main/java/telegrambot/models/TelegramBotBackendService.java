@@ -8,4 +8,7 @@ import retrofit2.http.Query;
 public interface TelegramBotBackendService {
 	@GET("/media")
 	Call<ResponseBody> getMedia(@Query("as_attachment") boolean asAttachment);
+
+	@GET("/scheduler/next")
+	Call<ResponseBody> getNextSendPhotoTime();
 }

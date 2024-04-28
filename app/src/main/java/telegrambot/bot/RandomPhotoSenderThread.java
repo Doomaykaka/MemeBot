@@ -1,13 +1,15 @@
 package telegrambot.bot;
 
-import java.time.Instant;
+import java.io.IOException;
+import java.time.ZonedDateTime;
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Response;
+import telegrambot.models.TelegramBotBackendService;
 
 public class RandomPhotoSenderThread extends Thread {
 	private TelegramBot bot;
-	private long lastSendedMessageTimestamp = Instant.now().getEpochSecond();
-	private final long timeDelta = 10;
 	private long lastChatId = -1;
-	private final long updateTime = 1000;
 
 	public RandomPhotoSenderThread(TelegramBot bot) {
 		this.bot = bot;
@@ -16,20 +18,19 @@ public class RandomPhotoSenderThread extends Thread {
 	public void run() {
 
 		while (true) {
-			long currentTime = Instant.now().getEpochSecond();
+			ZonedDateTime nextSendTime = sendNextSendPhotoTimeRequest();
+			long currentTime = ZonedDateTime.now().toEpochSecond();
+			long nextTime = nextSendTime.toEpochSecond();
 
-			if (currentTime - lastSendedMessageTimestamp > timeDelta && lastChatId != -1) {
-
-				bot.sendRandomPhoto(lastChatId);
-
-				lastSendedMessageTimestamp = currentTime;
-			}
+			long updateDelta = nextTime - currentTime;
 
 			try {
-				sleep(updateTime);
+				sleep(updateDelta * 1000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+
+			bot.sendRandomPhoto(lastChatId);
 		}
 	}
 
@@ -39,5 +40,30 @@ public class RandomPhotoSenderThread extends Thread {
 
 	public void setLastChatId(long lastChatId) {
 		this.lastChatId = lastChatId;
+	}
+
+	private ZonedDateTime sendNextSendPhotoTimeRequest() {
+		ZonedDateTime nextSendTime = null;
+
+		TelegramBotBackendService botService = BotInitializer.getBackendHttpClientService();
+		Call<ResponseBody> response = botService.getNextSendPhotoTime();
+
+		String time;
+
+		Response<ResponseBody> responseBody = null;
+		try {
+			responseBody = response.execute();
+
+			if (responseBody != null) {
+				time = responseBody.body().string();
+
+				nextSendTime = ZonedDateTime.parse(time);
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return nextSendTime;
 	}
 }

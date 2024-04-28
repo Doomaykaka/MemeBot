@@ -63,7 +63,8 @@ jar{
 
 versioner {
 	pattern {
-        pattern = "%M.%m.%p"
+        //pattern = "%M.%m.%p"
+        pattern = ""
     }
 
     startFrom {

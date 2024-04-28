@@ -23,19 +23,22 @@ public class TelegramBot extends TelegramLongPollingBot {
 	private RandomPhotoSenderThread senderThread;
 	private final long chatId = -938033073;
 
+	public TelegramBot() {
+		if (senderThread == null) {
+			senderThread = new RandomPhotoSenderThread(this);
+			senderThread.start();
+			senderThread.setLastChatId(chatId);
+		}
+	}
+
 	@Override
 	public void onUpdateReceived(Update update) {
 		if (update.hasMessage() && update.hasMessage() && update.getMessage().getChatId() == chatId) {
-
-			if (senderThread == null) {
-				senderThread = new RandomPhotoSenderThread(this);
-				senderThread.start();
-			}
-
 			if (update.getMessage().hasText()) {
 				String[] messageTextParts = update.getMessage().getText().split("\\s");
-				long chatId = update.getMessage().getChatId();
-				senderThread.setLastChatId(chatId);
+				// long chatId = update.getMessage().getChatId();
+
+				System.out.println(chatId);
 
 				switch (messageTextParts[0]) {
 					case "/start" :
