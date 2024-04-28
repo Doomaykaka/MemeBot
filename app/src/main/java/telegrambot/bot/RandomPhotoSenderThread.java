@@ -3,37 +3,37 @@ package telegrambot.bot;
 import java.time.ZonedDateTime;
 
 public class RandomPhotoSenderThread extends Thread {
-    private TelegramBot bot;
-    private long lastChatId = -1;
+	private TelegramBot bot;
+	private long lastChatId = -1;
 
-    public RandomPhotoSenderThread(TelegramBot bot) {
-        this.bot = bot;
-    }
+	public RandomPhotoSenderThread(TelegramBot bot) {
+		this.bot = bot;
+	}
 
-    public void run() {
+	public void run() {
 
-        while (true) {
-            ZonedDateTime nextSendTime = BotRequests.sendNextSendPhotoTimeRequest();
-            long currentTime = ZonedDateTime.now().toEpochSecond();
-            long nextTime = nextSendTime.toEpochSecond();
+		while (true) {
+			ZonedDateTime nextSendTime = BotRequests.sendNextSendPhotoTimeRequest();
+			long currentTime = ZonedDateTime.now().toEpochSecond();
+			long nextTime = nextSendTime.toEpochSecond();
 
-            long updateDelta = nextTime - currentTime;
+			long updateDelta = nextTime - currentTime;
 
-            try {
-                sleep(updateDelta * 1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+			try {
+				sleep(updateDelta * 1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 
-            bot.sendRandomPhoto(lastChatId);
-        }
-    }
+			bot.sendRandomPhoto(lastChatId);
+		}
+	}
 
-    public long getLastChatId() {
-        return lastChatId;
-    }
+	public long getLastChatId() {
+		return lastChatId;
+	}
 
-    public void setLastChatId(long lastChatId) {
-        this.lastChatId = lastChatId;
-    }
+	public void setLastChatId(long lastChatId) {
+		this.lastChatId = lastChatId;
+	}
 }

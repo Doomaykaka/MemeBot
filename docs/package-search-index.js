@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"telegrambot"},{"l":"telegrambot.bot"},{"l":"telegrambot.models"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"telegrambot"},{"l":"telegrambot.bot"},{"l":"telegrambot.config"},{"l":"telegrambot.models"}];updateSearchResults();

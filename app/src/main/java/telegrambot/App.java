@@ -7,16 +7,16 @@ import telegrambot.bot.BotInitializer;
 import telegrambot.config.Config;
 
 public class App {
-    private static Config botConfig;
+	private static Config botConfig;
 
-    public static void main(String[] args) {
-        botConfig = new Config();
-        botConfig.readConfig();
+	public static void main(String[] args) {
+		botConfig = new Config();
+		botConfig.readConfig();
 
-        BotInitializer.initialize();
-    }
+		BotInitializer.initialize();
+	}
 
-    public static Config getBotConfig() {
-        return botConfig;
-    }
+	public static Config getBotConfig() {
+		return botConfig;
+	}
 }

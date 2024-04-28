@@ -102,11 +102,15 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>retrofit2.Call<wbr>&lt;okhttp3.ResponseBody&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getMedia(boolean)" class="member-name-link">getMedia</a><wbr>(boolean&nbsp;asAttachment)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getMedia(boolean,java.lang.String)" class="member-name-link">getMedia</a><wbr>(boolean&nbsp;asAttachment,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;token)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>retrofit2.Call<wbr>&lt;okhttp3.ResponseBody&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getNextSendPhotoTime()" class="member-name-link">getNextSendPhotoTime</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getNextSendPhotoTime(java.lang.String)" class="member-name-link">getNextSendPhotoTime</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;token)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>retrofit2.Call<wbr>&lt;<a href="LoginResult.html" title="class in telegrambot.models">LoginResult</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#login(okhttp3.RequestBody)" class="member-name-link">login</a><wbr>(okhttp3.RequestBody&nbsp;params)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
 </div>
 </div>
 </div>
@@ -122,18 +126,30 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="getMedia(boolean)">
+<section class="detail" id="getMedia(boolean,java.lang.String)">
 <h3>getMedia</h3>
 <div class="member-signature"><span class="annotations">@GET("/media")
 </span><span class="return-type">retrofit2.Call&lt;okhttp3.ResponseBody&gt;</span>&nbsp;<span class="element-name">getMedia</span><wbr><span class="parameters">(@Query("as_attachment")
- boolean&nbsp;asAttachment)</span></div>
+ boolean&nbsp;asAttachment,
+ @Header("authorization")
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;token)</span></div>
 </section>
 </li>
 <li>
-<section class="detail" id="getNextSendPhotoTime()">
+<section class="detail" id="getNextSendPhotoTime(java.lang.String)">
 <h3>getNextSendPhotoTime</h3>
 <div class="member-signature"><span class="annotations">@GET("/scheduler/next")
-</span><span class="return-type">retrofit2.Call&lt;okhttp3.ResponseBody&gt;</span>&nbsp;<span class="element-name">getNextSendPhotoTime</span>()</div>
+</span><span class="return-type">retrofit2.Call&lt;okhttp3.ResponseBody&gt;</span>&nbsp;<span class="element-name">getNextSendPhotoTime</span><wbr><span class="parameters">(@Header("authorization")
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;token)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="login(okhttp3.RequestBody)">
+<h3>login</h3>
+<div class="member-signature"><span class="annotations">@POST("/login")
+@Headers("Content-Type: application/json")
+</span><span class="return-type">retrofit2.Call&lt;<a href="LoginResult.html" title="class in telegrambot.models">LoginResult</a>&gt;</span>&nbsp;<span class="element-name">login</span><wbr><span class="parameters">(@Body
+ okhttp3.RequestBody&nbsp;params)</span></div>
 </section>
 </li>
 </ul>
