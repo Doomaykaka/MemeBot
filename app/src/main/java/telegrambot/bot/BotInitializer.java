@@ -8,31 +8,31 @@ import retrofit2.Retrofit;
 import telegrambot.models.TelegramBotBackendService;
 
 public class BotInitializer {
-	private static TelegramBotBackendService backendHttpClientService;
+    private static TelegramBotBackendService backendHttpClientService;
 
-	public static void initialize() {
-		initializeBackendHttpClient();
-		createBot();
-	}
+    public static void initialize() {
+        initializeBackendHttpClient();
+        createBot();
+    }
 
-	private static void initializeBackendHttpClient() {
-		OkHttpClient httpClient = new OkHttpClient.Builder().build();
-		Retrofit retrofitClient = new Retrofit.Builder().client(httpClient).baseUrl("https://memebot.v01d.ru/").build();
+    private static void initializeBackendHttpClient() {
+        OkHttpClient httpClient = new OkHttpClient.Builder().build();
+        Retrofit retrofitClient = new Retrofit.Builder().client(httpClient).baseUrl("https://memebot.v01d.ru/").build();
 
-		backendHttpClientService = retrofitClient.create(TelegramBotBackendService.class);
-	}
+        backendHttpClientService = retrofitClient.create(TelegramBotBackendService.class);
+    }
 
-	private static void createBot() {
-		TelegramBotsApi botsApi;
-		try {
-			botsApi = new TelegramBotsApi(DefaultBotSession.class);
-			botsApi.registerBot(new TelegramBot());
-		} catch (TelegramApiException e) {
-			e.printStackTrace();
-		}
-	}
+    private static void createBot() {
+        TelegramBotsApi botsApi;
+        try {
+            botsApi = new TelegramBotsApi(DefaultBotSession.class);
+            botsApi.registerBot(new TelegramBot());
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+    }
 
-	public static TelegramBotBackendService getBackendHttpClientService() {
-		return backendHttpClientService;
-	}
+    public static TelegramBotBackendService getBackendHttpClientService() {
+        return backendHttpClientService;
+    }
 }
