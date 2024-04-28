@@ -15,6 +15,8 @@ public class TelegramBot extends TelegramLongPollingBot {
 	private final String BOT_TOKEN;
 
 	public TelegramBot() {
+		App.getLog().info("Telegram bot photo sender started");
+
 		CHAT_ID = App.getBotConfig().getChatId();
 		BOT_USERNAME = App.getBotConfig().getBotUsername();
 		BOT_TOKEN = App.getBotConfig().getBotToken();
@@ -28,19 +30,21 @@ public class TelegramBot extends TelegramLongPollingBot {
 
 	@Override
 	public void onUpdateReceived(Update update) {
+		App.getLog().info("Telegram bot triggered");
+
 		if (update.hasMessage() && update.hasMessage() && update.getMessage().getChatId() == CHAT_ID) {
 			if (update.getMessage().hasText()) {
 				String[] messageTextParts = update.getMessage().getText().split("\\s");
 
 				switch (messageTextParts[0]) {
 					case "/start" :
-						sendMessage(CHAT_ID, "Start");
+						sendMessage(CHAT_ID, "Hello");
 						break;
 					case "/get-media" :
 						sendRandomPhoto(CHAT_ID);
 						break;
 					default :
-						sendMessage(CHAT_ID, "Default");
+						sendMessage(CHAT_ID, "Bad command");
 				}
 			}
 		}

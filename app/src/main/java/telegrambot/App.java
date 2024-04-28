@@ -3,20 +3,30 @@
  */
 package telegrambot;
 
+import java.util.logging.Logger;
 import telegrambot.bot.BotInitializer;
 import telegrambot.config.Config;
 
 public class App {
 	private static Config botConfig;
+	private static Logger log;
 
 	public static void main(String[] args) {
+		log = Logger.getLogger("appLog");
+
 		botConfig = new Config();
 		botConfig.readConfig();
+
+		log.info("Config readed");
 
 		BotInitializer.initialize();
 	}
 
 	public static Config getBotConfig() {
 		return botConfig;
+	}
+
+	public static Logger getLog() {
+		return log;
 	}
 }

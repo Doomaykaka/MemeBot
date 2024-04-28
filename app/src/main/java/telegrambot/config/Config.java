@@ -53,6 +53,9 @@ public class Config {
 			path = path.substring(dirSlashIdx + 1);
 			path = path + separator + CONFIG_FILENAME;
 
+			if (!System.getProperty("os.name").startsWith("Windows")) {
+				path = "/" + path;
+			}
 		} catch (URISyntaxException e) {
 			System.out.println("Root path error");
 		}
@@ -72,35 +75,40 @@ public class Config {
 				for (String line : lines) {
 					prop.load(new StringReader(line));
 				}
+
+				if (prop.getProperty(PROPERTY_NAME_CHAT_ID) != null) {
+					chatId = Long.parseLong(prop.getProperty(PROPERTY_NAME_CHAT_ID));
+				}
+
+				if (prop.getProperty(PROPERTY_NAME_BOT_USERNAME) != null) {
+					botUsername = prop.getProperty(PROPERTY_NAME_BOT_USERNAME);
+				}
+
+				if (prop.getProperty(PROPERTY_NAME_TOKEN) != null) {
+					botToken = prop.getProperty(PROPERTY_NAME_TOKEN);
+				}
+
+				if (prop.getProperty(PROPERTY_NAME_BOT_BACKEND_URL) != null) {
+					botBackendUrl = prop.getProperty(PROPERTY_NAME_BOT_BACKEND_URL);
+				}
+
+				if (prop.getProperty(PROPERTY_NAME_BACKEND_LOGIN) != null) {
+					backendLogin = prop.getProperty(PROPERTY_NAME_BACKEND_LOGIN);
+				}
+
+				if (prop.getProperty(PROPERTY_NAME_BACKEND_PASSWORD) != null) {
+					backendPassword = prop.getProperty(PROPERTY_NAME_BACKEND_PASSWORD);
+				}
+
+				if (chatId == 0 || botUsername == null || botToken == null || botBackendUrl == null
+						|| backendLogin == null || backendPassword == null) {
+					throw new IOException("Params not parsed");
+				}
 			} catch (FileNotFoundException e) {
 				System.out.println("Config file not parsed");
 			} catch (IOException e) {
 				System.out.println("Config file not parsed");
 			}
-		}
-
-		if (prop.getProperty(PROPERTY_NAME_CHAT_ID) != null) {
-			chatId = Long.parseLong(prop.getProperty(PROPERTY_NAME_CHAT_ID));
-		}
-
-		if (prop.getProperty(PROPERTY_NAME_BOT_USERNAME) != null) {
-			botUsername = prop.getProperty(PROPERTY_NAME_BOT_USERNAME);
-		}
-
-		if (prop.getProperty(PROPERTY_NAME_TOKEN) != null) {
-			botToken = prop.getProperty(PROPERTY_NAME_TOKEN);
-		}
-
-		if (prop.getProperty(PROPERTY_NAME_BOT_BACKEND_URL) != null) {
-			botBackendUrl = prop.getProperty(PROPERTY_NAME_BOT_BACKEND_URL);
-		}
-
-		if (prop.getProperty(PROPERTY_NAME_BACKEND_LOGIN) != null) {
-			backendLogin = prop.getProperty(PROPERTY_NAME_BACKEND_LOGIN);
-		}
-
-		if (prop.getProperty(PROPERTY_NAME_BACKEND_PASSWORD) != null) {
-			backendPassword = prop.getProperty(PROPERTY_NAME_BACKEND_PASSWORD);
 		}
 	}
 

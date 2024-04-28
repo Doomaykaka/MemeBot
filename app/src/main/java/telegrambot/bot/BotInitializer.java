@@ -14,8 +14,16 @@ public class BotInitializer {
 	private static String token;
 
 	public static void initialize() {
+		App.getLog().info("HTTP client initialization");
+
 		initializeBackendHttpClient();
+
+		App.getLog().info("Getting token");
+
 		login();
+
+		App.getLog().info("Creating telegram bot");
+
 		createBot();
 	}
 
