@@ -1,57 +1,47 @@
 package telegrambot.bot;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.time.ZonedDateTime;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import org.json.simple.JSONObject;
-import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
-import org.telegram.telegrambots.meta.api.objects.InputFile;
 import retrofit2.Call;
 import retrofit2.Response;
 import telegrambot.App;
 import telegrambot.models.LoginResult;
+import telegrambot.models.Task;
 import telegrambot.models.TelegramBotBackendService;
 
 public class BotRequests {
 
-	public static SendPhoto getRandomPhoto() {
-		SendPhoto responseMessage = null;
-
-		boolean asAttachment = true;
+	public static Task getTask() {
+		Task task = null;
 
 		TelegramBotBackendService botService = BotInitializer.getBackendHttpClientService();
-		Call<ResponseBody> response = botService.getMedia(asAttachment, BotInitializer.getToken());
+		Call<Task> response = botService.getTask(BotInitializer.getToken());
 
-		Response<ResponseBody> responseBody = null;
+		Response<Task> responseBody = null;
 		try {
 			responseBody = response.execute();
 
 			if (responseBody != null) {
-				String contentType = responseBody.headers().get("Content-Type");
-				String mediaFilePreffix = contentType.substring(contentType.indexOf("/") + 1, contentType.length());
-
-				InputStream dataInputStream = responseBody.body().byteStream();
-
-				responseMessage = new SendPhoto();
-				responseMessage.setPhoto(new InputFile(dataInputStream, "media." + mediaFilePreffix));
+				task = ((Task) responseBody.body());
 			}
 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
-		return responseMessage;
+		return task;
 
 	}
 
-	public static ZonedDateTime sendNextSendPhotoTimeRequest() {
+	public static ZonedDateTime sendNextSendTaskTimeRequest() {
 		ZonedDateTime nextSendTime = null;
 
 		TelegramBotBackendService botService = BotInitializer.getBackendHttpClientService();
-		Call<ResponseBody> response = botService.getNextSendPhotoTime(BotInitializer.getToken());
+		Call<ResponseBody> response = botService.getNextTaskTime(BotInitializer.getToken());
 
 		String time;
 

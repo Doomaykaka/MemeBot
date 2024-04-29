@@ -1,28 +1,33 @@
 package telegrambot.bot;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.util.Base64;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
+import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import telegrambot.App;
+import telegrambot.models.Task;
 
 public class TelegramBot extends TelegramLongPollingBot {
 
-	private RandomPhotoSenderThread senderThread;
+	private RandomSenderThread senderThread;
 	private final long CHAT_ID;
 	private final String BOT_USERNAME;
 	private final String BOT_TOKEN;
 
 	public TelegramBot() {
-		App.getLog().info("Telegram bot photo sender started");
+		App.getLog().info("Telegram bot sender started");
 
 		CHAT_ID = App.getBotConfig().getChatId();
 		BOT_USERNAME = App.getBotConfig().getBotUsername();
 		BOT_TOKEN = App.getBotConfig().getBotToken();
 
 		if (senderThread == null) {
-			senderThread = new RandomPhotoSenderThread(this);
+			senderThread = new RandomSenderThread(this);
 			senderThread.start();
 			senderThread.setLastChatId(CHAT_ID);
 		}
@@ -37,11 +42,16 @@ public class TelegramBot extends TelegramLongPollingBot {
 				String[] messageTextParts = update.getMessage().getText().split("\\s");
 
 				switch (messageTextParts[0]) {
+					case "/recheck-tasks" :
+						senderThread.interrupt();
+						senderThread = new RandomSenderThread(this);
+						senderThread.start();
+						senderThread.setLastChatId(CHAT_ID);
 					case "/start" :
 						sendMessage(CHAT_ID, "Hello");
 						break;
 					case "/get-media" :
-						sendRandomPhoto(CHAT_ID);
+						sendRandomMedia(CHAT_ID);
 						break;
 					default :
 						sendMessage(CHAT_ID, "Bad command");
@@ -67,7 +77,7 @@ public class TelegramBot extends TelegramLongPollingBot {
 		try {
 			execute(sendMessage);
 		} catch (TelegramApiException e) {
-
+			e.printStackTrace();
 		}
 	}
 
@@ -80,8 +90,23 @@ public class TelegramBot extends TelegramLongPollingBot {
 		}
 	}
 
-	public void sendRandomPhoto(long chatId) {
-		SendPhoto randomPhoto = BotRequests.getRandomPhoto();
-		sendPhoto(chatId, randomPhoto);
+	public void sendRandomMedia(long chatId) {
+		Task backendTask = BotRequests.getTask();
+
+		switch (backendTask.getType()) {
+			case "TEXT" :
+				sendMessage(CHAT_ID, backendTask.getContent());
+				break;
+			case "IMAGE" :
+				InputStream imgStream = new ByteArrayInputStream(
+						Base64.getDecoder().decode(backendTask.getContent().getBytes()));
+				SendPhoto photoToSend = new SendPhoto();
+				photoToSend.setPhoto(new InputFile(imgStream, "image.jpg"));
+
+				sendPhoto(CHAT_ID, photoToSend);
+				break;
+			default :
+				App.getLog().info("Media not parsed");
+		}
 	}
 }

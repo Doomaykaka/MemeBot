@@ -1,11 +1,11 @@
 package telegrambot.models;
 
 public class LoginResult {
+	private String token;
+
 	public LoginResult(String token) {
 		this.token = token;
 	}
-
-	private String token;
 
 	public String getToken() {
 		return token;

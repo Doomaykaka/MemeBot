@@ -65,7 +65,7 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="telegrambot/config/Config.html#backendPassword" class="member-name-link">backendPassword</a> - Variable in class telegrambot.config.<a href="telegrambot/config/Config.html" title="class in telegrambot.config">Config</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="telegrambot/bot/RandomPhotoSenderThread.html#bot" class="member-name-link">bot</a> - Variable in class telegrambot.bot.<a href="telegrambot/bot/RandomPhotoSenderThread.html" title="class in telegrambot.bot">RandomPhotoSenderThread</a></dt>
+<dt><a href="telegrambot/bot/RandomSenderThread.html#bot" class="member-name-link">bot</a> - Variable in class telegrambot.bot.<a href="telegrambot/bot/RandomSenderThread.html" title="class in telegrambot.bot">RandomSenderThread</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="telegrambot/bot/TelegramBot.html#BOT_TOKEN" class="member-name-link">BOT_TOKEN</a> - Variable in class telegrambot.bot.<a href="telegrambot/bot/TelegramBot.html" title="class in telegrambot.bot">TelegramBot</a></dt>
 <dd>&nbsp;</dd>
@@ -102,6 +102,8 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="telegrambot/config/Config.html#CONFIG_FILENAME" class="member-name-link">CONFIG_FILENAME</a> - Variable in class telegrambot.config.<a href="telegrambot/config/Config.html" title="class in telegrambot.config">Config</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="telegrambot/models/Task.html#content" class="member-name-link">content</a> - Variable in class telegrambot.models.<a href="telegrambot/models/Task.html" title="class in telegrambot.models">Task</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="telegrambot/bot/BotInitializer.html#createBot()" class="member-name-link">createBot()</a> - Static method in class telegrambot.bot.<a href="telegrambot/bot/BotInitializer.html" title="class in telegrambot.bot">BotInitializer</a></dt>
 <dd>&nbsp;</dd>
 </dl>
@@ -127,19 +129,23 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="telegrambot/config/Config.html#getChatId()" class="member-name-link">getChatId()</a> - Method in class telegrambot.config.<a href="telegrambot/config/Config.html" title="class in telegrambot.config">Config</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="telegrambot/bot/RandomPhotoSenderThread.html#getLastChatId()" class="member-name-link">getLastChatId()</a> - Method in class telegrambot.bot.<a href="telegrambot/bot/RandomPhotoSenderThread.html" title="class in telegrambot.bot">RandomPhotoSenderThread</a></dt>
+<dt><a href="telegrambot/models/Task.html#getContent()" class="member-name-link">getContent()</a> - Method in class telegrambot.models.<a href="telegrambot/models/Task.html" title="class in telegrambot.models">Task</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="telegrambot/bot/RandomSenderThread.html#getLastChatId()" class="member-name-link">getLastChatId()</a> - Method in class telegrambot.bot.<a href="telegrambot/bot/RandomSenderThread.html" title="class in telegrambot.bot">RandomSenderThread</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="telegrambot/App.html#getLog()" class="member-name-link">getLog()</a> - Static method in class telegrambot.<a href="telegrambot/App.html" title="class in telegrambot">App</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="telegrambot/models/TelegramBotBackendService.html#getMedia(boolean,java.lang.String)" class="member-name-link">getMedia(boolean, String)</a> - Method in interface telegrambot.models.<a href="telegrambot/models/TelegramBotBackendService.html" title="interface in telegrambot.models">TelegramBotBackendService</a></dt>
+<dt><a href="telegrambot/models/TelegramBotBackendService.html#getNextTaskTime(java.lang.String)" class="member-name-link">getNextTaskTime(String)</a> - Method in interface telegrambot.models.<a href="telegrambot/models/TelegramBotBackendService.html" title="interface in telegrambot.models">TelegramBotBackendService</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="telegrambot/models/TelegramBotBackendService.html#getNextSendPhotoTime(java.lang.String)" class="member-name-link">getNextSendPhotoTime(String)</a> - Method in interface telegrambot.models.<a href="telegrambot/models/TelegramBotBackendService.html" title="interface in telegrambot.models">TelegramBotBackendService</a></dt>
+<dt><a href="telegrambot/bot/BotRequests.html#getTask()" class="member-name-link">getTask()</a> - Static method in class telegrambot.bot.<a href="telegrambot/bot/BotRequests.html" title="class in telegrambot.bot">BotRequests</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="telegrambot/bot/BotRequests.html#getRandomPhoto()" class="member-name-link">getRandomPhoto()</a> - Static method in class telegrambot.bot.<a href="telegrambot/bot/BotRequests.html" title="class in telegrambot.bot">BotRequests</a></dt>
+<dt><a href="telegrambot/models/TelegramBotBackendService.html#getTask(java.lang.String)" class="member-name-link">getTask(String)</a> - Method in interface telegrambot.models.<a href="telegrambot/models/TelegramBotBackendService.html" title="interface in telegrambot.models">TelegramBotBackendService</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="telegrambot/bot/BotInitializer.html#getToken()" class="member-name-link">getToken()</a> - Static method in class telegrambot.bot.<a href="telegrambot/bot/BotInitializer.html" title="class in telegrambot.bot">BotInitializer</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="telegrambot/models/LoginResult.html#getToken()" class="member-name-link">getToken()</a> - Method in class telegrambot.models.<a href="telegrambot/models/LoginResult.html" title="class in telegrambot.models">LoginResult</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="telegrambot/models/Task.html#getType()" class="member-name-link">getType()</a> - Method in class telegrambot.models.<a href="telegrambot/models/Task.html" title="class in telegrambot.models">Task</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:I">I</h2>
@@ -151,7 +157,7 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:L">L</h2>
 <dl class="index">
-<dt><a href="telegrambot/bot/RandomPhotoSenderThread.html#lastChatId" class="member-name-link">lastChatId</a> - Variable in class telegrambot.bot.<a href="telegrambot/bot/RandomPhotoSenderThread.html" title="class in telegrambot.bot">RandomPhotoSenderThread</a></dt>
+<dt><a href="telegrambot/bot/RandomSenderThread.html#lastChatId" class="member-name-link">lastChatId</a> - Variable in class telegrambot.bot.<a href="telegrambot/bot/RandomSenderThread.html" title="class in telegrambot.bot">RandomSenderThread</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="telegrambot/App.html#log" class="member-name-link">log</a> - Static variable in class telegrambot.<a href="telegrambot/App.html" title="class in telegrambot">App</a></dt>
 <dd>&nbsp;</dd>
@@ -193,13 +199,13 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:R">R</h2>
 <dl class="index">
-<dt><a href="telegrambot/bot/RandomPhotoSenderThread.html" class="type-name-link" title="class in telegrambot.bot">RandomPhotoSenderThread</a> - Class in <a href="telegrambot/bot/package-summary.html">telegrambot.bot</a></dt>
+<dt><a href="telegrambot/bot/RandomSenderThread.html" class="type-name-link" title="class in telegrambot.bot">RandomSenderThread</a> - Class in <a href="telegrambot/bot/package-summary.html">telegrambot.bot</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="telegrambot/bot/RandomPhotoSenderThread.html#%3Cinit%3E(telegrambot.bot.TelegramBot)" class="member-name-link">RandomPhotoSenderThread(TelegramBot)</a> - Constructor for class telegrambot.bot.<a href="telegrambot/bot/RandomPhotoSenderThread.html" title="class in telegrambot.bot">RandomPhotoSenderThread</a></dt>
+<dt><a href="telegrambot/bot/RandomSenderThread.html#%3Cinit%3E(telegrambot.bot.TelegramBot)" class="member-name-link">RandomSenderThread(TelegramBot)</a> - Constructor for class telegrambot.bot.<a href="telegrambot/bot/RandomSenderThread.html" title="class in telegrambot.bot">RandomSenderThread</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="telegrambot/config/Config.html#readConfig()" class="member-name-link">readConfig()</a> - Method in class telegrambot.config.<a href="telegrambot/config/Config.html" title="class in telegrambot.config">Config</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="telegrambot/bot/RandomPhotoSenderThread.html#run()" class="member-name-link">run()</a> - Method in class telegrambot.bot.<a href="telegrambot/bot/RandomPhotoSenderThread.html" title="class in telegrambot.bot">RandomPhotoSenderThread</a></dt>
+<dt><a href="telegrambot/bot/RandomSenderThread.html#run()" class="member-name-link">run()</a> - Method in class telegrambot.bot.<a href="telegrambot/bot/RandomSenderThread.html" title="class in telegrambot.bot">RandomSenderThread</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:S">S</h2>
@@ -210,19 +216,27 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="telegrambot/bot/TelegramBot.html#sendMessage(java.lang.Long,java.lang.String)" class="member-name-link">sendMessage(Long, String)</a> - Method in class telegrambot.bot.<a href="telegrambot/bot/TelegramBot.html" title="class in telegrambot.bot">TelegramBot</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="telegrambot/bot/BotRequests.html#sendNextSendPhotoTimeRequest()" class="member-name-link">sendNextSendPhotoTimeRequest()</a> - Static method in class telegrambot.bot.<a href="telegrambot/bot/BotRequests.html" title="class in telegrambot.bot">BotRequests</a></dt>
+<dt><a href="telegrambot/bot/BotRequests.html#sendNextSendTaskTimeRequest()" class="member-name-link">sendNextSendTaskTimeRequest()</a> - Static method in class telegrambot.bot.<a href="telegrambot/bot/BotRequests.html" title="class in telegrambot.bot">BotRequests</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="telegrambot/bot/TelegramBot.html#sendPhoto(java.lang.Long,org.telegram.telegrambots.meta.api.methods.send.SendPhoto)" class="member-name-link">sendPhoto(Long, SendPhoto)</a> - Method in class telegrambot.bot.<a href="telegrambot/bot/TelegramBot.html" title="class in telegrambot.bot">TelegramBot</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="telegrambot/bot/TelegramBot.html#sendRandomPhoto(long)" class="member-name-link">sendRandomPhoto(long)</a> - Method in class telegrambot.bot.<a href="telegrambot/bot/TelegramBot.html" title="class in telegrambot.bot">TelegramBot</a></dt>
+<dt><a href="telegrambot/bot/TelegramBot.html#sendRandomMedia(long)" class="member-name-link">sendRandomMedia(long)</a> - Method in class telegrambot.bot.<a href="telegrambot/bot/TelegramBot.html" title="class in telegrambot.bot">TelegramBot</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="telegrambot/bot/RandomPhotoSenderThread.html#setLastChatId(long)" class="member-name-link">setLastChatId(long)</a> - Method in class telegrambot.bot.<a href="telegrambot/bot/RandomPhotoSenderThread.html" title="class in telegrambot.bot">RandomPhotoSenderThread</a></dt>
+<dt><a href="telegrambot/models/Task.html#setContent(java.lang.String)" class="member-name-link">setContent(String)</a> - Method in class telegrambot.models.<a href="telegrambot/models/Task.html" title="class in telegrambot.models">Task</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="telegrambot/bot/RandomSenderThread.html#setLastChatId(long)" class="member-name-link">setLastChatId(long)</a> - Method in class telegrambot.bot.<a href="telegrambot/bot/RandomSenderThread.html" title="class in telegrambot.bot">RandomSenderThread</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="telegrambot/models/LoginResult.html#setToken(java.lang.String)" class="member-name-link">setToken(String)</a> - Method in class telegrambot.models.<a href="telegrambot/models/LoginResult.html" title="class in telegrambot.models">LoginResult</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="telegrambot/models/Task.html#setType(java.lang.String)" class="member-name-link">setType(String)</a> - Method in class telegrambot.models.<a href="telegrambot/models/Task.html" title="class in telegrambot.models">Task</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <h2 class="title" id="I:T">T</h2>
 <dl class="index">
+<dt><a href="telegrambot/models/Task.html" class="type-name-link" title="class in telegrambot.models">Task</a> - Class in <a href="telegrambot/models/package-summary.html">telegrambot.models</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="telegrambot/models/Task.html#%3Cinit%3E(java.lang.String,java.lang.String)" class="member-name-link">Task(String, String)</a> - Constructor for class telegrambot.models.<a href="telegrambot/models/Task.html" title="class in telegrambot.models">Task</a></dt>
+<dd>&nbsp;</dd>
 <dt><a href="telegrambot/package-summary.html">telegrambot</a> - package telegrambot</dt>
 <dd>&nbsp;</dd>
 <dt><a href="telegrambot/bot/TelegramBot.html" class="type-name-link" title="class in telegrambot.bot">TelegramBot</a> - Class in <a href="telegrambot/bot/package-summary.html">telegrambot.bot</a></dt>
@@ -240,6 +254,8 @@ loadScripts(document, 'script');</script>
 <dt><a href="telegrambot/bot/BotInitializer.html#token" class="member-name-link">token</a> - Static variable in class telegrambot.bot.<a href="telegrambot/bot/BotInitializer.html" title="class in telegrambot.bot">BotInitializer</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="telegrambot/models/LoginResult.html#token" class="member-name-link">token</a> - Variable in class telegrambot.models.<a href="telegrambot/models/LoginResult.html" title="class in telegrambot.models">LoginResult</a></dt>
+<dd>&nbsp;</dd>
+<dt><a href="telegrambot/models/Task.html#type" class="member-name-link">type</a> - Variable in class telegrambot.models.<a href="telegrambot/models/Task.html" title="class in telegrambot.models">Task</a></dt>
 <dd>&nbsp;</dd>
 </dl>
 <a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="constant-values.html">Constant&nbsp;Field&nbsp;Values</a></main>

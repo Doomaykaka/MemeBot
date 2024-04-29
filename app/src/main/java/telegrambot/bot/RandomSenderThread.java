@@ -2,18 +2,18 @@ package telegrambot.bot;
 
 import java.time.ZonedDateTime;
 
-public class RandomPhotoSenderThread extends Thread {
+public class RandomSenderThread extends Thread {
 	private TelegramBot bot;
 	private long lastChatId = -1;
 
-	public RandomPhotoSenderThread(TelegramBot bot) {
+	public RandomSenderThread(TelegramBot bot) {
 		this.bot = bot;
 	}
 
 	public void run() {
 
 		while (true) {
-			ZonedDateTime nextSendTime = BotRequests.sendNextSendPhotoTimeRequest();
+			ZonedDateTime nextSendTime = BotRequests.sendNextSendTaskTimeRequest();
 			long currentTime = ZonedDateTime.now().toEpochSecond();
 			long nextTime = nextSendTime.toEpochSecond();
 
@@ -25,7 +25,7 @@ public class RandomPhotoSenderThread extends Thread {
 				e.printStackTrace();
 			}
 
-			bot.sendRandomPhoto(lastChatId);
+			bot.sendRandomMedia(lastChatId);;
 		}
 	}
 
