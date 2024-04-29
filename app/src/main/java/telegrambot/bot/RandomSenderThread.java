@@ -22,7 +22,7 @@ public class RandomSenderThread extends Thread {
 			try {
 				sleep(updateDelta * 1000);
 			} catch (InterruptedException e) {
-				e.printStackTrace();
+				break;
 			}
 
 			bot.sendRandomMedia(lastChatId);;
