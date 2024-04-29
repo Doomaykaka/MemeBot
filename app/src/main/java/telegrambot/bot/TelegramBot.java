@@ -47,6 +47,7 @@ public class TelegramBot extends TelegramLongPollingBot {
 						senderThread = new RandomSenderThread(this);
 						senderThread.start();
 						senderThread.setLastChatId(CHAT_ID);
+						break;
 					case "/start" :
 						sendMessage(CHAT_ID, "Hello");
 						break;
