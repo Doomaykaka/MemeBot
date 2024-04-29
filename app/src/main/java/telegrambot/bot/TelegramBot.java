@@ -50,8 +50,14 @@ public class TelegramBot extends TelegramLongPollingBot {
 					case "/start" :
 						sendMessage(CHAT_ID, "Hello");
 						break;
-					case "/get-media" :
+					case "/get-task" :
 						sendRandomMedia(CHAT_ID);
+						break;
+					case "/help" :
+						String help = "Commands: \n" + "/recheck-tasks - update bot tasks \n"
+								+ "/start - start bot using \n" + "/get-task - request a new task \n"
+								+ "/help - commands description";
+						sendMessage(CHAT_ID, help);
 						break;
 					default :
 						sendMessage(CHAT_ID, "Bad command");
