@@ -1,13 +1,9 @@
 package telegrambot.config;
 
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.StringReader;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.List;
 import java.util.Properties;
 
 public class Config {
@@ -18,121 +14,41 @@ public class Config {
 	public final static String PROPERTY_NAME_BACKEND_LOGIN = "backend-login";
 	public final static String PROPERTY_NAME_BACKEND_PASSWORD = "backend-password";
 
-	private long chatId;
-	private String botUsername;
-	private String botToken;
-	private String botBackendUrl;
-	private String backendLogin;
-	private String backendPassword;
+	public final long chatId;
+	public final String botUsername;
+	public final String botToken;
+	public final String botBackendUrl;
+	public final String backendLogin;
+	public final String backendPassword;
 
 	private final String CONFIG_FILENAME = "settings.conf";
 
-	private String path;
+	private Path path;
 
-	public Config() {
-		try {
-			String separator = "";
-			path = this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI().toString();
+	public Config() throws FileNotFoundException, IOException {
+		path = Path.of(Path.of(System.getProperty("user.dir"), CONFIG_FILENAME).toFile().getAbsolutePath());
 
-			int dirSlashIdx = 0;
-			dirSlashIdx = path.lastIndexOf("/");
-			if (dirSlashIdx != -1) {
-				path = path.substring(0, dirSlashIdx);
-				separator = "/";
-			} else {
-				separator = "/";
-				dirSlashIdx = path.lastIndexOf("\\");
-				if (dirSlashIdx != -1) {
-					path = path.substring(0, dirSlashIdx);
-				} else {
-					throw new URISyntaxException("checkRootPathString", "Bad path");
-				}
-			}
-
-			dirSlashIdx = path.indexOf(separator);
-			path = path.substring(dirSlashIdx + 1);
-			path = path + separator + CONFIG_FILENAME;
-
-			if (!System.getProperty("os.name").startsWith("Windows")) {
-				path = "/" + path;
-			}
-		} catch (URISyntaxException e) {
-			System.out.println("Root path error");
+		if (!path.toFile().exists()) {
+			throw new FileNotFoundException("No config file: " + path.toString());
 		}
-	}
 
-	public Config(String path) {
-		this.path = path;
-	}
-
-	public void readConfig() {
+		FileInputStream configFileInputStream = new FileInputStream(path.toString());
 		Properties prop = new Properties();
+		prop.load(configFileInputStream);
 
-		if (!path.equals("")) {
-			try {
-				Path filePath = Paths.get(path);
-				List<String> lines = Files.readAllLines(filePath);
-				for (String line : lines) {
-					prop.load(new StringReader(line));
-				}
+		chatId = Long.parseLong(getProperty(prop, PROPERTY_NAME_CHAT_ID));
+		botUsername = getProperty(prop, PROPERTY_NAME_BOT_USERNAME);
+		botToken = getProperty(prop, PROPERTY_NAME_TOKEN);
+		botBackendUrl = getProperty(prop, PROPERTY_NAME_BOT_BACKEND_URL);
+		backendLogin = getProperty(prop, PROPERTY_NAME_BACKEND_LOGIN);
+		backendPassword = getProperty(prop, PROPERTY_NAME_BACKEND_PASSWORD);
+	}
 
-				if (prop.getProperty(PROPERTY_NAME_CHAT_ID) != null) {
-					chatId = Long.parseLong(prop.getProperty(PROPERTY_NAME_CHAT_ID));
-				}
-
-				if (prop.getProperty(PROPERTY_NAME_BOT_USERNAME) != null) {
-					botUsername = prop.getProperty(PROPERTY_NAME_BOT_USERNAME);
-				}
-
-				if (prop.getProperty(PROPERTY_NAME_TOKEN) != null) {
-					botToken = prop.getProperty(PROPERTY_NAME_TOKEN);
-				}
-
-				if (prop.getProperty(PROPERTY_NAME_BOT_BACKEND_URL) != null) {
-					botBackendUrl = prop.getProperty(PROPERTY_NAME_BOT_BACKEND_URL);
-				}
-
-				if (prop.getProperty(PROPERTY_NAME_BACKEND_LOGIN) != null) {
-					backendLogin = prop.getProperty(PROPERTY_NAME_BACKEND_LOGIN);
-				}
-
-				if (prop.getProperty(PROPERTY_NAME_BACKEND_PASSWORD) != null) {
-					backendPassword = prop.getProperty(PROPERTY_NAME_BACKEND_PASSWORD);
-				}
-
-				if (chatId == 0 || botUsername == null || botToken == null || botBackendUrl == null
-						|| backendLogin == null || backendPassword == null) {
-					throw new IOException("Params not parsed");
-				}
-			} catch (FileNotFoundException e) {
-				System.out.println("Config file not parsed");
-			} catch (IOException e) {
-				System.out.println("Config file not parsed");
-			}
+	private String getProperty(Properties prop, String propertyName) throws IOException {
+		if (prop.getProperty(propertyName) == null) {
+			throw new IOException("Param " + propertyName + " not parsed");
 		}
-	}
 
-	public long getChatId() {
-		return chatId;
-	}
-
-	public String getBotUsername() {
-		return botUsername;
-	}
-
-	public String getBotToken() {
-		return botToken;
-	}
-
-	public String getBotBackendUrl() {
-		return botBackendUrl;
-	}
-
-	public String getBackendLogin() {
-		return backendLogin;
-	}
-
-	public String getBackendPassword() {
-		return backendPassword;
+		return prop.getProperty(propertyName);
 	}
 }

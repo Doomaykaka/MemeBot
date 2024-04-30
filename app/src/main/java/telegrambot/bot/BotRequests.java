@@ -25,9 +25,11 @@ public class BotRequests {
 		try {
 			responseBody = response.execute();
 
-			if (responseBody != null) {
-				task = ((Task) responseBody.body());
+			if (responseBody == null) {
+				throw new IOException("Null response");
 			}
+
+			task = ((Task) responseBody.body());
 
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -66,12 +68,12 @@ public class BotRequests {
 		String token = null;
 
 		JSONObject postParams = new JSONObject();
-		postParams.put("login", App.getBotConfig().getBackendLogin());
-		postParams.put("password", App.getBotConfig().getBackendPassword());
+		postParams.put("login", App.getBotConfig().backendLogin);
+		postParams.put("password", App.getBotConfig().backendPassword);
 
 		String JSON = postParams.toString();
 
-		RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), (JSON));
+		RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), JSON);
 
 		TelegramBotBackendService botService = BotInitializer.getBackendHttpClientService();
 		Call<LoginResult> response = botService.login(requestBody);

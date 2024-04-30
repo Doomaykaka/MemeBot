@@ -2,11 +2,11 @@ package telegrambot.bot;
 
 import java.time.ZonedDateTime;
 
-public class RandomSenderThread extends Thread {
+public class TaskThread extends Thread {
 	private TelegramBot bot;
 	private long lastChatId = -1;
 
-	public RandomSenderThread(TelegramBot bot) {
+	public TaskThread(TelegramBot bot) {
 		this.bot = bot;
 	}
 

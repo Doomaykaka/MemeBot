@@ -13,23 +13,20 @@ public class BotInitializer {
 	private static TelegramBotBackendService backendHttpClientService;
 	private static String token;
 
-	public static void initialize() {
+	public static void initialize() throws TelegramApiException {
 		App.getLog().info("HTTP client initialization");
-
 		initializeBackendHttpClient();
 
 		App.getLog().info("Getting token");
-
 		login();
 
 		App.getLog().info("Creating telegram bot");
-
 		createBot();
 	}
 
 	private static void initializeBackendHttpClient() {
 		OkHttpClient httpClient = new OkHttpClient.Builder().build();
-		String botBackendURL = App.getBotConfig().getBotBackendUrl();
+		String botBackendURL = App.getBotConfig().botBackendUrl;
 		Retrofit retrofitClient = new Retrofit.Builder().client(httpClient).baseUrl(botBackendURL)
 				.addConverterFactory(GsonConverterFactory.create()).build();
 
@@ -40,14 +37,10 @@ public class BotInitializer {
 		token = "Bearer " + BotRequests.sendLoginRequest();
 	}
 
-	private static void createBot() {
+	private static void createBot() throws TelegramApiException {
 		TelegramBotsApi botsApi;
-		try {
-			botsApi = new TelegramBotsApi(DefaultBotSession.class);
-			botsApi.registerBot(new TelegramBot());
-		} catch (TelegramApiException e) {
-			e.printStackTrace();
-		}
+		botsApi = new TelegramBotsApi(DefaultBotSession.class);
+		botsApi.registerBot(new TelegramBot());
 	}
 
 	public static TelegramBotBackendService getBackendHttpClientService() {
