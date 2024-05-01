@@ -129,9 +129,15 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Method executing a request to receive a task related to mailing</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>retrofit2.Call<wbr>&lt;<a href="LoginResult.html" title="class in telegrambot.models">LoginResult</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#login(okhttp3.RequestBody)" class="member-name-link">login</a><wbr>(okhttp3.RequestBody&nbsp;params)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>retrofit2.Call<wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getThemeUpdate(java.lang.String,java.lang.String)" class="member-name-link">getThemeUpdate</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;token,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;theme)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">A method that performs a request to update the topic of the received content.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>retrofit2.Call<wbr>&lt;<a href="LoginResult.html" title="class in telegrambot.models">LoginResult</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#login(okhttp3.RequestBody)" class="member-name-link">login</a><wbr>(okhttp3.RequestBody&nbsp;params)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Method that performs an authorization request on the server</div>
 </div>
 </div>
@@ -210,6 +216,24 @@ loadScripts(document, 'script');</script>
 <dd><code>schedule</code> - schedule according to which tasks will be executed</dd>
 <dt>Returns:</dt>
 <dd>Callable list of strings</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getThemeUpdate(java.lang.String,java.lang.String)">
+<h3>getThemeUpdate</h3>
+<div class="member-signature"><span class="annotations">@GET("/users/update_theme")
+</span><span class="return-type">retrofit2.Call&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name">getThemeUpdate</span><wbr><span class="parameters">(@Header("authorization")
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;token,
+ @Query("theme")
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;theme)</span></div>
+<div class="block">A method that performs a request to update the topic of the received content.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>token</code> - authorization token</dd>
+<dd><code>theme</code> - search theme</dd>
+<dt>Returns:</dt>
+<dd>updated theme</dd>
 </dl>
 </section>
 </li>

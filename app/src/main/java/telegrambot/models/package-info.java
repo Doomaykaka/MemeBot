@@ -1,6 +1,6 @@
 /**
  * Application models package
- * 
+ *
  * @see LoginResult
  * @see Schedule
  * @see Task

@@ -63,7 +63,7 @@ versioner {
 
     startFrom {
         major = 1
-        minor = 0
+        minor = 1
         patch = 3
     }
 }
@@ -108,6 +108,9 @@ spotless {
         importOrder()
         eclipse()
         formatAnnotations()
+        indentWithSpaces(4)
+        trimTrailingWhitespace()
+        endWithNewline()
     }
 }
 

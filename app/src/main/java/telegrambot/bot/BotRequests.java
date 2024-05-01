@@ -17,134 +17,162 @@ import telegrambot.models.TelegramBotBackendService;
 
 /**
  * Set of requests to the server
- * 
+ *
  * @see Task
  * @see Schedule
  * @author Doomaykaka MIT License
  * @since 2024-05-01
  */
 public class BotRequests {
-	/**
-	 * Method executing a request to receive a task related to mailing
-	 * 
-	 * @return a task for a telegram bot related to mailing
-	 */
-	public static Task getTask() {
-		Task task = null;
+    /**
+     * Method executing a request to receive a task related to mailing
+     *
+     * @return a task for a telegram bot related to mailing
+     */
+    public static Task getTask() {
+        Task task = null;
 
-		TelegramBotBackendService botService = BotInitializer.getBackendHttpClientService();
-		Call<Task> response = botService.getTask(BotInitializer.getToken());
+        TelegramBotBackendService botService = BotInitializer.getBackendHttpClientService();
+        Call<Task> response = botService.getTask(BotInitializer.getToken());
 
-		Response<Task> responseBody = null;
-		try {
-			responseBody = response.execute();
+        Response<Task> responseBody = null;
+        try {
+            responseBody = response.execute();
 
-			if (responseBody == null) {
-				throw new IOException("Null response");
-			}
+            if (responseBody == null) {
+                throw new IOException("Null response");
+            }
 
-			task = ((Task) responseBody.body());
+            task = ((Task) responseBody.body());
 
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-		return task;
+        return task;
 
-	}
+    }
 
-	/**
-	 * Method that performs a request to get the time to start next task
-	 * 
-	 * @return time to start next task
-	 */
-	public static ZonedDateTime sendNextSendTaskTimeRequest() {
-		ZonedDateTime nextSendTime = null;
+    /**
+     * Method that performs a request to get the time to start next task
+     *
+     * @return time to start next task
+     */
+    public static ZonedDateTime sendNextSendTaskTimeRequest() {
+        ZonedDateTime nextSendTime = null;
 
-		TelegramBotBackendService botService = BotInitializer.getBackendHttpClientService();
-		Call<ResponseBody> response = botService.getNextTaskTime(BotInitializer.getToken());
+        TelegramBotBackendService botService = BotInitializer.getBackendHttpClientService();
+        Call<ResponseBody> response = botService.getNextTaskTime(BotInitializer.getToken());
 
-		String time;
+        String time;
 
-		Response<ResponseBody> responseBody = null;
-		try {
-			responseBody = response.execute();
+        Response<ResponseBody> responseBody = null;
+        try {
+            responseBody = response.execute();
 
-			if (responseBody != null) {
-				time = responseBody.body().string();
+            if (responseBody != null) {
+                time = responseBody.body().string();
 
-				nextSendTime = ZonedDateTime.parse(time);
-			}
+                nextSendTime = ZonedDateTime.parse(time);
+            }
 
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-		return nextSendTime;
-	}
+        return nextSendTime;
+    }
 
-	/**
-	 * Method that performs an authorization request on the server
-	 * 
-	 * @return token for authorization on the server
-	 */
-	public static String sendLoginRequest() {
-		String token = null;
+    /**
+     * Method that performs an authorization request on the server
+     *
+     * @return token for authorization on the server
+     */
+    public static String sendLoginRequest() {
+        String token = null;
 
-		JSONObject postParams = new JSONObject();
-		postParams.put("login", App.getBotConfig().backendLogin);
-		postParams.put("password", App.getBotConfig().backendPassword);
+        JSONObject postParams = new JSONObject();
+        postParams.put("login", App.getBotConfig().backendLogin);
+        postParams.put("password", App.getBotConfig().backendPassword);
 
-		String JSON = postParams.toString();
+        String JSON = postParams.toString();
 
-		RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), JSON);
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), JSON);
 
-		TelegramBotBackendService botService = BotInitializer.getBackendHttpClientService();
-		Call<LoginResult> response = botService.login(requestBody);
+        TelegramBotBackendService botService = BotInitializer.getBackendHttpClientService();
+        Call<LoginResult> response = botService.login(requestBody);
 
-		Response<LoginResult> responseBody = null;
-		try {
-			responseBody = response.execute();
+        Response<LoginResult> responseBody = null;
+        try {
+            responseBody = response.execute();
 
-			if (responseBody != null) {
-				LoginResult loginResult = ((LoginResult) responseBody.body());
-				token = loginResult.getToken();
-			}
+            if (responseBody != null) {
+                LoginResult loginResult = ((LoginResult) responseBody.body());
+                token = loginResult.getToken();
+            }
 
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-		return token;
-	}
+        return token;
+    }
 
-	/**
-	 * Method that performs a request to update the task execution schedule
-	 * 
-	 * @param schedule
-	 *            schedule according to which tasks will be executed
-	 * @return list of nearest task completion dates
-	 */
-	public static Schedule sendUpdateScheduleRequest(String schedule) {
-		Schedule scheduleResult = null;
+    /**
+     * Method that performs a request to update the task execution schedule
+     *
+     * @param schedule
+     *            schedule according to which tasks will be executed
+     * @return list of nearest task completion dates
+     */
+    public static Schedule sendUpdateScheduleRequest(String schedule) {
+        Schedule scheduleResult = null;
 
-		String token = BotInitializer.getToken();
+        String token = BotInitializer.getToken();
 
-		TelegramBotBackendService botService = BotInitializer.getBackendHttpClientService();
-		Call<List<String>> response = botService.getSheduleUpdate(token, schedule);
+        TelegramBotBackendService botService = BotInitializer.getBackendHttpClientService();
+        Call<List<String>> response = botService.getSheduleUpdate(token, schedule);
 
-		Response<List<String>> responseBody = null;
-		try {
-			responseBody = response.execute();
+        Response<List<String>> responseBody = null;
+        try {
+            responseBody = response.execute();
 
-			if (responseBody != null) {
-				scheduleResult = new Schedule((List<String>) responseBody.body());
-			}
+            if (responseBody != null) {
+                scheduleResult = new Schedule((List<String>) responseBody.body());
+            }
 
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-		return scheduleResult;
-	}
+        return scheduleResult;
+    }
+
+    /**
+     * Method that performs a request to update the search theme
+     *
+     * @param theme
+     *            search theme
+     * @return updated theme
+     */
+    public static String sendUpdateThemeRequest(String theme) {
+        String token = BotInitializer.getToken();
+
+        TelegramBotBackendService botService = BotInitializer.getBackendHttpClientService();
+        Call<String> response = botService.getThemeUpdate(token, theme);
+
+        Response<String> responseBody = null;
+        try {
+            responseBody = response.execute();
+
+            if (responseBody == null) {
+                throw new IOException("Bad response");
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return theme;
+    }
 }

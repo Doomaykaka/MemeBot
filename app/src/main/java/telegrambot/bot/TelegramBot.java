@@ -19,7 +19,7 @@ import telegrambot.models.Task;
 
 /**
  * Logic of telegram bot operation and auxiliary tools
- * 
+ *
  * @see TaskThread
  * @see App
  * @see BotRequests
@@ -27,244 +27,251 @@ import telegrambot.models.Task;
  * @since 2024-05-01
  */
 public class TelegramBot extends TelegramLongPollingBot {
-	/**
-	 * Thread performing tasks
-	 */
-	private TaskThread senderThread;
-	/**
-	 * Chat ID with which the telegram bot will work
-	 */
-	private final long CHAT_ID;
-	/**
-	 * Bot username
-	 */
-	private final String BOT_USERNAME;
-	/**
-	 * Bot token
-	 */
-	private final String BOT_TOKEN;
+    /**
+     * Thread performing tasks
+     */
+    private TaskThread senderThread;
+    /**
+     * Chat ID with which the telegram bot will work
+     */
+    private final long CHAT_ID;
+    /**
+     * Bot username
+     */
+    private final String BOT_USERNAME;
+    /**
+     * Bot token
+     */
+    private final String BOT_TOKEN;
 
-	/**
-	 * A constructor that sets the telegram bot settings and starts scheduled tasks
-	 */
-	public TelegramBot() {
-		App.getLog().info("Telegram bot sender started");
+    /**
+     * A constructor that sets the telegram bot settings and starts scheduled tasks
+     */
+    public TelegramBot() {
+        App.getLog().info("Telegram bot sender started");
 
-		CHAT_ID = App.getBotConfig().chatId;
-		BOT_USERNAME = App.getBotConfig().botUsername;
-		BOT_TOKEN = App.getBotConfig().botToken;
+        CHAT_ID = App.getBotConfig().chatId;
+        BOT_USERNAME = App.getBotConfig().botUsername;
+        BOT_TOKEN = App.getBotConfig().botToken;
 
-		if (senderThread == null) {
-			senderThread = new TaskThread(this);
-			senderThread.start();
-			senderThread.setLastChatId(CHAT_ID);
-		}
-	}
+        if (senderThread == null) {
+            senderThread = new TaskThread(this);
+            senderThread.start();
+            senderThread.setLastChatId(CHAT_ID);
+        }
+    }
 
-	/**
-	 * Method that is triggered when the state of the chat in which the telegram bot
-	 * is located is updated
-	 * 
-	 * @param update
-	 *            updated chat status with telegram bot
-	 */
-	@Override
-	public void onUpdateReceived(Update update) {
-		App.getLog().info("Telegram bot triggered");
+    /**
+     * Method that is triggered when the state of the chat in which the telegram bot
+     * is located is updated
+     *
+     * @param update
+     *            updated chat status with telegram bot
+     */
+    @Override
+    public void onUpdateReceived(Update update) {
+        App.getLog().info("Telegram bot triggered");
 
-		if (update.hasMessage() && update.hasMessage() && update.getMessage().getChatId() == CHAT_ID) {
-			if (update.getMessage().hasText()) {
-				String message = update.getMessage().getText();
+        if (update.hasMessage() && update.hasMessage() && update.getMessage().getChatId() == CHAT_ID) {
+            if (update.getMessage().hasText()) {
+                String message = update.getMessage().getText();
 
-				if (message.substring(0, 1).equals("/")) {
-					commandExecuter(message.substring(1));
-				}
-			}
-		}
+                if (message.substring(0, 1).equals("/")) {
+                    commandExecuter(message.substring(1));
+                }
+            }
+        }
 
-		if (update.hasCallbackQuery()) {
-			String command = update.getCallbackQuery().getData();
+        if (update.hasCallbackQuery()) {
+            String command = update.getCallbackQuery().getData();
 
-			commandExecuter(command);
-		}
-	}
+            commandExecuter(command);
+        }
+    }
 
-	/**
-	 * A method that implements commands supported by a telegram bot
-	 * 
-	 * @param command
-	 *            command received by the bot when updating the chat state
-	 */
-	private void commandExecuter(String command) {
-		String[] commandParts = command.split("\\s");
+    /**
+     * A method that implements commands supported by a telegram bot
+     *
+     * @param command
+     *            command received by the bot when updating the chat state
+     */
+    private void commandExecuter(String command) {
+        String[] commandParts = command.split("\\s");
 
-		switch (commandParts[0]) {
-			case "recheckTasks" :
-				senderThread.interrupt();
-				senderThread = new TaskThread(this);
-				senderThread.start();
-				senderThread.setLastChatId(CHAT_ID);
-				break;
-			case "start" :
-				sendMessage(CHAT_ID, "Hello");
-				break;
-			case "getTask" :
-				sendRandomMedia(CHAT_ID);
-				break;
-			case "updateSchedule" :
-				String scheduleExpression = command.replace("updateSchedule ", "");
+        switch (commandParts[0]) {
+            case "recheckTasks" :
+                senderThread.interrupt();
+                senderThread = new TaskThread(this);
+                senderThread.start();
+                senderThread.setLastChatId(CHAT_ID);
+                break;
+            case "start" :
+                sendMessage(CHAT_ID, "Hello");
+                break;
+            case "getTask" :
+                sendRandomMedia(CHAT_ID);
+                break;
+            case "updateSchedule" :
+                String scheduleExpression = command.replace("updateSchedule ", "");
 
-				Schedule updatedSchedule = BotRequests.sendUpdateScheduleRequest(scheduleExpression);
-				sendMessage(CHAT_ID, updatedSchedule.toString());
-				break;
-			case "menu" :
-				generateMenuButtons(CHAT_ID);
-				break;
-			case "help" :
-				String help = "Commands: \n" + "/menu - push-button menu \n" + "/recheckTasks - update bot tasks \n"
-						+ "/start - start bot using \n" + "/getTask - request a new task \n"
-						+ "/updateSchedule - update schedule" + "/help - commands description";
-				sendMessage(CHAT_ID, help);
-				break;
-			default :
-				sendMessage(CHAT_ID, "Bad command");
-		}
-	}
+                Schedule updatedSchedule = BotRequests.sendUpdateScheduleRequest(scheduleExpression);
+                sendMessage(CHAT_ID, updatedSchedule.toString());
+                break;
+            case "updateTheme" :
+                String newTheme = command.replace("updateTheme ", "");
 
-	/**
-	 * Method for getting bot username
-	 * 
-	 * @return bot username
-	 */
-	@Override
-	public String getBotUsername() {
-		return BOT_USERNAME;
-	}
+                String updatedTheme = BotRequests.sendUpdateThemeRequest(newTheme);
+                sendMessage(CHAT_ID, "Current theme: " + updatedTheme);
+                break;
+            case "menu" :
+                generateMenuButtons(CHAT_ID);
+                break;
+            case "help" :
+                String help = "Commands: \n" + "/menu - push-button menu \n" + "/recheckTasks - update bot tasks \n"
+                        + "/start - start bot using \n" + "/getTask - request a new task \n"
+                        + "/updateSchedule - update schedule" + "/updateTheme - update meme theme"
+                        + "/help - commands description";
+                sendMessage(CHAT_ID, help);
+                break;
+            default :
+                sendMessage(CHAT_ID, "Bad command");
+        }
+    }
 
-	/**
-	 * Method for getting bot token
-	 * 
-	 * @return bot token
-	 */
-	@Override
-	public String getBotToken() {
-		return BOT_TOKEN;
-	}
+    /**
+     * Method for getting bot username
+     *
+     * @return bot username
+     */
+    @Override
+    public String getBotUsername() {
+        return BOT_USERNAME;
+    }
 
-	/**
-	 * Method for sending a text message to chat
-	 * 
-	 * @param chatId
-	 *            ID of the chat to which the message should be sent
-	 * @param textToSend
-	 *            message to be sent
-	 */
-	private void sendMessage(Long chatId, String textToSend) {
-		SendMessage sendMessage = new SendMessage();
-		sendMessage.setChatId(String.valueOf(chatId));
-		sendMessage.setText(textToSend);
-		try {
-			execute(sendMessage);
-		} catch (TelegramApiException e) {
-			e.printStackTrace();
-		}
-	}
+    /**
+     * Method for getting bot token
+     *
+     * @return bot token
+     */
+    @Override
+    public String getBotToken() {
+        return BOT_TOKEN;
+    }
 
-	/**
-	 * Method for sending an image to chat
-	 * 
-	 * @param chatId
-	 *            ID of the chat to which the message should be sent
-	 * @param photoToSend
-	 *            image to be sent
-	 */
-	private void sendPhoto(Long chatId, SendPhoto photoToSend) {
-		photoToSend.setChatId(String.valueOf(chatId));
-		try {
-			execute(photoToSend);
-		} catch (TelegramApiException e) {
-			e.printStackTrace();
-		}
-	}
+    /**
+     * Method for sending a text message to chat
+     *
+     * @param chatId
+     *            ID of the chat to which the message should be sent
+     * @param textToSend
+     *            message to be sent
+     */
+    private void sendMessage(Long chatId, String textToSend) {
+        SendMessage sendMessage = new SendMessage();
+        sendMessage.setChatId(String.valueOf(chatId));
+        sendMessage.setText(textToSend);
+        try {
+            execute(sendMessage);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+    }
 
-	/**
-	 * Method to send random media to chat
-	 * 
-	 * @param chatId
-	 *            chat ID to send random media to
-	 */
-	public void sendRandomMedia(long chatId) {
-		Task backendTask = BotRequests.getTask();
+    /**
+     * Method for sending an image to chat
+     *
+     * @param chatId
+     *            ID of the chat to which the message should be sent
+     * @param photoToSend
+     *            image to be sent
+     */
+    private void sendPhoto(Long chatId, SendPhoto photoToSend) {
+        photoToSend.setChatId(String.valueOf(chatId));
+        try {
+            execute(photoToSend);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+    }
 
-		switch (backendTask.getType()) {
-			case "TEXT" :
-				sendMessage(CHAT_ID, backendTask.getContent());
-				break;
-			case "IMAGE" :
-				InputStream imgStream = new ByteArrayInputStream(
-						Base64.getDecoder().decode(backendTask.getContent().getBytes()));
-				SendPhoto photoToSend = new SendPhoto();
-				photoToSend.setPhoto(new InputFile(imgStream, "image.jpg"));
+    /**
+     * Method to send random media to chat
+     *
+     * @param chatId
+     *            chat ID to send random media to
+     */
+    public void sendRandomMedia(long chatId) {
+        Task backendTask = BotRequests.getTask();
 
-				sendPhoto(CHAT_ID, photoToSend);
-				break;
-			default :
-				App.getLog().info("Media not parsed");
-		}
-	}
+        switch (backendTask.getType()) {
+            case "TEXT" :
+                sendMessage(CHAT_ID, backendTask.getContent());
+                break;
+            case "IMAGE" :
+                InputStream imgStream = new ByteArrayInputStream(
+                        Base64.getDecoder().decode(backendTask.getContent().getBytes()));
+                SendPhoto photoToSend = new SendPhoto();
+                photoToSend.setPhoto(new InputFile(imgStream, "image.jpg"));
 
-	/**
-	 * A method that generates a graphical menu for controlling a telegram bot in a
-	 * chat
-	 * 
-	 * @param chatId
-	 *            chat ID for generating graphical menu
-	 */
-	private void generateMenuButtons(long chatId) {
-		InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
+                sendPhoto(CHAT_ID, photoToSend);
+                break;
+            default :
+                App.getLog().info("Media not parsed");
+        }
+    }
 
-		InlineKeyboardButton recheckTasksButton = new InlineKeyboardButton();
-		InlineKeyboardButton start = new InlineKeyboardButton();
-		InlineKeyboardButton getTask = new InlineKeyboardButton();
-		InlineKeyboardButton help = new InlineKeyboardButton();
+    /**
+     * A method that generates a graphical menu for controlling a telegram bot in a
+     * chat
+     *
+     * @param chatId
+     *            chat ID for generating graphical menu
+     */
+    private void generateMenuButtons(long chatId) {
+        InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
 
-		recheckTasksButton.setText("Recheck tasks");
-		recheckTasksButton.setCallbackData("recheckTasks");
-		start.setText("Start bot");
-		start.setCallbackData("start");
-		getTask.setText("Get task");
-		getTask.setCallbackData("getTask");
-		help.setText("Help");
-		help.setCallbackData("help");
+        InlineKeyboardButton recheckTasksButton = new InlineKeyboardButton();
+        InlineKeyboardButton start = new InlineKeyboardButton();
+        InlineKeyboardButton getTask = new InlineKeyboardButton();
+        InlineKeyboardButton help = new InlineKeyboardButton();
 
-		List<InlineKeyboardButton> keyboardButtonsRow1 = new ArrayList<>();
-		List<InlineKeyboardButton> keyboardButtonsRow2 = new ArrayList<>();
-		List<InlineKeyboardButton> keyboardButtonsRow3 = new ArrayList<>();
-		List<InlineKeyboardButton> keyboardButtonsRow4 = new ArrayList<>();
+        recheckTasksButton.setText("Recheck tasks");
+        recheckTasksButton.setCallbackData("recheckTasks");
+        start.setText("Start bot");
+        start.setCallbackData("start");
+        getTask.setText("Get task");
+        getTask.setCallbackData("getTask");
+        help.setText("Help");
+        help.setCallbackData("help");
 
-		keyboardButtonsRow1.add(recheckTasksButton);
-		keyboardButtonsRow2.add(start);
-		keyboardButtonsRow3.add(getTask);
-		keyboardButtonsRow4.add(help);
+        List<InlineKeyboardButton> keyboardButtonsRow1 = new ArrayList<>();
+        List<InlineKeyboardButton> keyboardButtonsRow2 = new ArrayList<>();
+        List<InlineKeyboardButton> keyboardButtonsRow3 = new ArrayList<>();
+        List<InlineKeyboardButton> keyboardButtonsRow4 = new ArrayList<>();
 
-		List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
+        keyboardButtonsRow1.add(recheckTasksButton);
+        keyboardButtonsRow2.add(start);
+        keyboardButtonsRow3.add(getTask);
+        keyboardButtonsRow4.add(help);
 
-		rowList.add(keyboardButtonsRow1);
-		rowList.add(keyboardButtonsRow2);
-		rowList.add(keyboardButtonsRow3);
-		rowList.add(keyboardButtonsRow4);
+        List<List<InlineKeyboardButton>> rowList = new ArrayList<>();
 
-		inlineKeyboardMarkup.setKeyboard(rowList);
+        rowList.add(keyboardButtonsRow1);
+        rowList.add(keyboardButtonsRow2);
+        rowList.add(keyboardButtonsRow3);
+        rowList.add(keyboardButtonsRow4);
 
-		SendMessage keyboardMessage = new SendMessage();
-		keyboardMessage.setChatId(chatId);
-		keyboardMessage.setText("Menu:");
-		keyboardMessage.setReplyMarkup(inlineKeyboardMarkup);
+        inlineKeyboardMarkup.setKeyboard(rowList);
 
-		try {
-			execute(keyboardMessage);
-		} catch (TelegramApiException e) {
-			e.printStackTrace();
-		}
-	}
+        SendMessage keyboardMessage = new SendMessage();
+        keyboardMessage.setChatId(chatId);
+        keyboardMessage.setText("Menu:");
+        keyboardMessage.setReplyMarkup(inlineKeyboardMarkup);
+
+        try {
+            execute(keyboardMessage);
+        } catch (TelegramApiException e) {
+            e.printStackTrace();
+        }
+    }
 }
