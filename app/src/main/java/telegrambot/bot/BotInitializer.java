@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 import okhttp3.OkHttpClient;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
@@ -17,7 +18,7 @@ import telegrambot.models.TelegramBotBackendService;
 /**
  * An initializer that creates an HTTP client, authorization on the server, as
  * well as creating and launching a telegram bot
- * 
+ *
  * @see TelegramBotBackendService
  * @see App
  * @see TelegramBot
@@ -37,7 +38,7 @@ public class BotInitializer {
 	/**
 	 * The method creates an HTTP client, performs authorization on the server and
 	 * creates a telegram bot
-	 * 
+	 *
 	 * @throws TelegramApiException
 	 */
 	public static void initialize() throws TelegramApiException {
@@ -57,7 +58,16 @@ public class BotInitializer {
 	private static void initializeBackendHttpClient() {
 		Gson gson = new GsonBuilder().setLenient().create();
 
-		OkHttpClient httpClient = new OkHttpClient.Builder().build();
+		// TODO: @Doomaykaka, перепиши, пожалуйста, как тебе нравится.
+		// Взял код тут:
+		// https://stackoverflow.com/questions/37162055/how-to-set-timeout-in-retrofit-2-0-android
+		// да, я понимаю, что этим цифрам место в конфиге, но был нужен быстрый фикс.
+		// Хорошо, что у меня 10 лет
+		// опыта написания проектов на джаве и доступ в гугл.
+		// P.S. Возможно, споттлес заменяет пробелы на табы.
+
+		OkHttpClient httpClient = new OkHttpClient.Builder().connectTimeout(20, TimeUnit.SECONDS)
+				.writeTimeout(20, TimeUnit.SECONDS).readTimeout(30, TimeUnit.SECONDS).build();
 		String botBackendURL = App.getBotConfig().botBackendUrl;
 		Retrofit retrofitClient = new Retrofit.Builder().client(httpClient).baseUrl(botBackendURL)
 				.addConverterFactory(GsonConverterFactory.create(gson)).build();
@@ -84,7 +94,7 @@ public class BotInitializer {
 	/**
 	 * A method for obtaining a service containing a list of available HTTP requests
 	 * to the server
-	 * 
+	 *
 	 * @return service containing a list of available HTTP requests to the server
 	 */
 	public static TelegramBotBackendService getBackendHttpClientService() {
@@ -93,7 +103,7 @@ public class BotInitializer {
 
 	/**
 	 * Method for obtaining a token for authorization on the server
-	 * 
+	 *
 	 * @return token for authorization on the server
 	 */
 	public static String getToken() {
