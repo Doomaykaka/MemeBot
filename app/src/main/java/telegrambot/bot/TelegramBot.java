@@ -129,7 +129,7 @@ public class TelegramBot extends TelegramLongPollingBot {
             case "help" :
                 String help = "Commands: \n" + "/menu - push-button menu \n" + "/recheckTasks - update bot tasks \n"
                         + "/start - start bot using \n" + "/getTask - request a new task \n"
-                        + "/updateSchedule - update schedule\n" + "/updateTheme - update meme theme"
+                        + "/updateSchedule - update schedule\n" + "/updateTheme - update meme theme\n"
                         + "/help - commands description";
                 sendMessage(CHAT_ID, help);
                 break;
