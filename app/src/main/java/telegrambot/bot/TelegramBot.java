@@ -14,6 +14,7 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMa
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import telegrambot.App;
+import telegrambot.models.Shedule;
 import telegrambot.models.Task;
 
 public class TelegramBot extends TelegramLongPollingBot {
@@ -43,10 +44,10 @@ public class TelegramBot extends TelegramLongPollingBot {
 
 		if (update.hasMessage() && update.hasMessage() && update.getMessage().getChatId() == CHAT_ID) {
 			if (update.getMessage().hasText()) {
-				String[] messageTextParts = update.getMessage().getText().split("\\s");
+				String message = update.getMessage().getText();
 
-				if (messageTextParts[0].substring(0, 1).equals("/")) {
-					commandExecuter(messageTextParts[0].substring(1));
+				if (message.substring(0, 1).equals("/")) {
+					commandExecuter(message.substring(1));
 				}
 			}
 		}
@@ -59,8 +60,10 @@ public class TelegramBot extends TelegramLongPollingBot {
 	}
 
 	private void commandExecuter(String command) {
-		switch (command) {
-			case "recheck-tasks" :
+		String[] commandParts = command.split("\\s");
+
+		switch (commandParts[0]) {
+			case "recheckTasks" :
 				senderThread.interrupt();
 				senderThread = new TaskThread(this);
 				senderThread.start();
@@ -69,16 +72,22 @@ public class TelegramBot extends TelegramLongPollingBot {
 			case "start" :
 				sendMessage(CHAT_ID, "Hello");
 				break;
-			case "get-task" :
+			case "getTask" :
 				sendRandomMedia(CHAT_ID);
+				break;
+			case "updateSchedule" :
+				String sheduleExpression = command.replace("updateSchedule ", "");
+
+				Shedule updatedShedule = BotRequests.sendUpdateSheduleRequest(sheduleExpression);
+				sendMessage(CHAT_ID, updatedShedule.toString());
 				break;
 			case "menu" :
 				generateMenuButtons(CHAT_ID);
 				break;
 			case "help" :
-				String help = "Commands: \n" + "/menu - push-button menu \n" + "/recheck-tasks - update bot tasks \n"
-						+ "/start - start bot using \n" + "/get-task - request a new task \n"
-						+ "/help - commands description";
+				String help = "Commands: \n" + "/menu - push-button menu \n" + "/recheckTasks - update bot tasks \n"
+						+ "/start - start bot using \n" + "/getTask - request a new task \n"
+						+ "/updateSchedule - update schedule" + "/help - commands description";
 				sendMessage(CHAT_ID, help);
 				break;
 			default :
@@ -145,11 +154,11 @@ public class TelegramBot extends TelegramLongPollingBot {
 		InlineKeyboardButton help = new InlineKeyboardButton();
 
 		recheckTasksButton.setText("Recheck tasks");
-		recheckTasksButton.setCallbackData("recheck-tasks");
+		recheckTasksButton.setCallbackData("recheckTasks");
 		start.setText("Start bot");
 		start.setCallbackData("start");
 		getTask.setText("Get task");
-		getTask.setCallbackData("get-task");
+		getTask.setCallbackData("getTask");
 		help.setText("Help");
 		help.setCallbackData("help");
 

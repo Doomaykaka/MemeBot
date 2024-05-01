@@ -2,6 +2,7 @@ package telegrambot.bot;
 
 import java.io.IOException;
 import java.time.ZonedDateTime;
+import java.util.List;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -10,6 +11,7 @@ import retrofit2.Call;
 import retrofit2.Response;
 import telegrambot.App;
 import telegrambot.models.LoginResult;
+import telegrambot.models.Shedule;
 import telegrambot.models.Task;
 import telegrambot.models.TelegramBotBackendService;
 
@@ -92,5 +94,28 @@ public class BotRequests {
 		}
 
 		return token;
+	}
+
+	public static Shedule sendUpdateSheduleRequest(String shedule) {
+		Shedule sheduleResult = null;
+
+		String token = BotInitializer.getToken();
+
+		TelegramBotBackendService botService = BotInitializer.getBackendHttpClientService();
+		Call<List<String>> response = botService.getSheduleUpdate(token, shedule);
+
+		Response<List<String>> responseBody = null;
+		try {
+			responseBody = response.execute();
+
+			if (responseBody != null) {
+				sheduleResult = new Shedule((List<String>) responseBody.body());
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return sheduleResult;
 	}
 }

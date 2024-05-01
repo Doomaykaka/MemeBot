@@ -1,5 +1,7 @@
 package telegrambot.bot;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import okhttp3.OkHttpClient;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
@@ -25,10 +27,12 @@ public class BotInitializer {
 	}
 
 	private static void initializeBackendHttpClient() {
+		Gson gson = new GsonBuilder().setLenient().create();
+
 		OkHttpClient httpClient = new OkHttpClient.Builder().build();
 		String botBackendURL = App.getBotConfig().botBackendUrl;
 		Retrofit retrofitClient = new Retrofit.Builder().client(httpClient).baseUrl(botBackendURL)
-				.addConverterFactory(GsonConverterFactory.create()).build();
+				.addConverterFactory(GsonConverterFactory.create(gson)).build();
 
 		backendHttpClientService = retrofitClient.create(TelegramBotBackendService.class);
 	}
