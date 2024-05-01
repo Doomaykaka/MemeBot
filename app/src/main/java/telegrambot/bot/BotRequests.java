@@ -11,12 +11,24 @@ import retrofit2.Call;
 import retrofit2.Response;
 import telegrambot.App;
 import telegrambot.models.LoginResult;
-import telegrambot.models.Shedule;
+import telegrambot.models.Schedule;
 import telegrambot.models.Task;
 import telegrambot.models.TelegramBotBackendService;
 
+/**
+ * Set of requests to the server
+ * 
+ * @see Task
+ * @see Schedule
+ * @author Doomaykaka MIT License
+ * @since 2024-05-01
+ */
 public class BotRequests {
-
+	/**
+	 * Method executing a request to receive a task related to mailing
+	 * 
+	 * @return a task for a telegram bot related to mailing
+	 */
 	public static Task getTask() {
 		Task task = null;
 
@@ -41,6 +53,11 @@ public class BotRequests {
 
 	}
 
+	/**
+	 * Method that performs a request to get the time to start next task
+	 * 
+	 * @return time to start next task
+	 */
 	public static ZonedDateTime sendNextSendTaskTimeRequest() {
 		ZonedDateTime nextSendTime = null;
 
@@ -66,6 +83,11 @@ public class BotRequests {
 		return nextSendTime;
 	}
 
+	/**
+	 * Method that performs an authorization request on the server
+	 * 
+	 * @return token for authorization on the server
+	 */
 	public static String sendLoginRequest() {
 		String token = null;
 
@@ -96,26 +118,33 @@ public class BotRequests {
 		return token;
 	}
 
-	public static Shedule sendUpdateSheduleRequest(String shedule) {
-		Shedule sheduleResult = null;
+	/**
+	 * Method that performs a request to update the task execution schedule
+	 * 
+	 * @param schedule
+	 *            schedule according to which tasks will be executed
+	 * @return list of nearest task completion dates
+	 */
+	public static Schedule sendUpdateScheduleRequest(String schedule) {
+		Schedule scheduleResult = null;
 
 		String token = BotInitializer.getToken();
 
 		TelegramBotBackendService botService = BotInitializer.getBackendHttpClientService();
-		Call<List<String>> response = botService.getSheduleUpdate(token, shedule);
+		Call<List<String>> response = botService.getSheduleUpdate(token, schedule);
 
 		Response<List<String>> responseBody = null;
 		try {
 			responseBody = response.execute();
 
 			if (responseBody != null) {
-				sheduleResult = new Shedule((List<String>) responseBody.body());
+				scheduleResult = new Schedule((List<String>) responseBody.body());
 			}
 
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
-		return sheduleResult;
+		return scheduleResult;
 	}
 }

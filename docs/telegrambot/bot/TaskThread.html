@@ -97,6 +97,20 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">TaskThread</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html" title="class or interface in java.lang" class="external-link">Thread</a></span></div>
+<div class="block">A thread that obtains the time after which the task will be executed, waits
+ for this time, and executes the task</div>
+<dl class="notes">
+<dt>Since:</dt>
+<dd>2024-05-01</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list">
+<li><a href="TelegramBot.html" title="class in telegrambot.bot"><code>TelegramBot</code></a></li>
+<li><a href="../App.html" title="class in telegrambot"><code>App</code></a></li>
+<li><a href="TelegramBot.html" title="class in telegrambot.bot"><code>TelegramBot</code></a></li>
+</ul>
+</dd>
+</dl>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -120,10 +134,14 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code>private <a href="TelegramBot.html" title="class in telegrambot.bot">TelegramBot</a></code></div>
 <div class="col-second even-row-color"><code><a href="#bot" class="member-name-link">bot</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Telegram bot</div>
+</div>
 <div class="col-first odd-row-color"><code>private long</code></div>
 <div class="col-second odd-row-color"><code><a href="#lastChatId" class="member-name-link">lastChatId</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">ID of the chat for which the task needs to be performed</div>
+</div>
 </div>
 <div class="inherited-list">
 <h3 id="fields-inherited-from-class-java.lang.Thread">Fields inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html" title="class or interface in java.lang" class="external-link">Thread</a></h3>
@@ -139,7 +157,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(telegrambot.bot.TelegramBot)" class="member-name-link">TaskThread</a><wbr>(<a href="TelegramBot.html" title="class in telegrambot.bot">TelegramBot</a>&nbsp;bot)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">A constructor that sets an external dependency on the telegram bot object</div>
+</div>
 </div>
 </section>
 </li>
@@ -156,13 +176,22 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>long</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getLastChatId()" class="member-name-link">getLastChatId</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Method for getting the ID of the chat for which the task needs to be
+ completed</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#run()" class="member-name-link">run</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">A method that is the body of a thread, receives the time after which the task
+ will be completed, waits for this time and executes the task</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setLastChatId(long)" class="member-name-link">setLastChatId</a><wbr>(long&nbsp;lastChatId)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Method for changing the ID of the chat for which the task needs to be
+ completed</div>
+</div>
 </div>
 </div>
 </div>
@@ -187,12 +216,14 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="bot">
 <h3>bot</h3>
 <div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="TelegramBot.html" title="class in telegrambot.bot">TelegramBot</a></span>&nbsp;<span class="element-name">bot</span></div>
+<div class="block">Telegram bot</div>
 </section>
 </li>
 <li>
 <section class="detail" id="lastChatId">
 <h3>lastChatId</h3>
 <div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">long</span>&nbsp;<span class="element-name">lastChatId</span></div>
+<div class="block">ID of the chat for which the task needs to be performed</div>
 </section>
 </li>
 </ul>
@@ -207,6 +238,11 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;(telegrambot.bot.TelegramBot)">
 <h3>TaskThread</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">TaskThread</span><wbr><span class="parameters">(<a href="TelegramBot.html" title="class in telegrambot.bot">TelegramBot</a>&nbsp;bot)</span></div>
+<div class="block">A constructor that sets an external dependency on the telegram bot object</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>bot</code> - telegram bot that will carry out the task</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -221,6 +257,8 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="run()">
 <h3>run</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">run</span>()</div>
+<div class="block">A method that is the body of a thread, receives the time after which the task
+ will be completed, waits for this time and executes the task</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Runnable.html#run()" title="class or interface in java.lang" class="external-link">run</a></code>&nbsp;in interface&nbsp;<code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a></code></dd>
@@ -233,12 +271,24 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getLastChatId()">
 <h3>getLastChatId</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">long</span>&nbsp;<span class="element-name">getLastChatId</span>()</div>
+<div class="block">Method for getting the ID of the chat for which the task needs to be
+ completed</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>ID of the chat for which the task needs to be performed</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="setLastChatId(long)">
 <h3>setLastChatId</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setLastChatId</span><wbr><span class="parameters">(long&nbsp;lastChatId)</span></div>
+<div class="block">Method for changing the ID of the chat for which the task needs to be
+ completed</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>lastChatId</code> - ID of the chat for which the task needs to be performed</dd>
+</dl>
 </section>
 </li>
 </ul>

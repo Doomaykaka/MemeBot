@@ -87,6 +87,18 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <hr>
 <div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">TelegramBotBackendService</span></div>
+<div class="block">Description of the set of requests to the server</div>
+<dl class="notes">
+<dt>Since:</dt>
+<dd>2024-05-01</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list">
+<li><a href="Task.html" title="class in telegrambot.models"><code>Task</code></a></li>
+<li><a href="LoginResult.html" title="class in telegrambot.models"><code>LoginResult</code></a></li>
+</ul>
+</dd>
+</dl>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -103,17 +115,25 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>retrofit2.Call<wbr>&lt;okhttp3.ResponseBody&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getNextTaskTime(java.lang.String)" class="member-name-link">getNextTaskTime</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;token)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Method that performs a request to get the time to start next task</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>retrofit2.Call<wbr>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getSheduleUpdate(java.lang.String,java.lang.String)" class="member-name-link">getSheduleUpdate</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;token,
- <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;shedule)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;schedule)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Method that performs a request to update the task execution schedule</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>retrofit2.Call<wbr>&lt;<a href="Task.html" title="class in telegrambot.models">Task</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getTask(java.lang.String)" class="member-name-link">getTask</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;token)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Method executing a request to receive a task related to mailing</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>retrofit2.Call<wbr>&lt;<a href="LoginResult.html" title="class in telegrambot.models">LoginResult</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#login(okhttp3.RequestBody)" class="member-name-link">login</a><wbr>(okhttp3.RequestBody&nbsp;params)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="block">Method that performs an authorization request on the server</div>
+</div>
 </div>
 </div>
 </div>
@@ -134,6 +154,13 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="annotations">@GET("/task")
 </span><span class="return-type">retrofit2.Call&lt;<a href="Task.html" title="class in telegrambot.models">Task</a>&gt;</span>&nbsp;<span class="element-name">getTask</span><wbr><span class="parameters">(@Header("authorization")
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;token)</span></div>
+<div class="block">Method executing a request to receive a task related to mailing</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>token</code> - authorization token</dd>
+<dt>Returns:</dt>
+<dd>callable task</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -142,6 +169,13 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="annotations">@GET("/scheduler/next")
 </span><span class="return-type">retrofit2.Call&lt;okhttp3.ResponseBody&gt;</span>&nbsp;<span class="element-name">getNextTaskTime</span><wbr><span class="parameters">(@Header("authorization")
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;token)</span></div>
+<div class="block">Method that performs a request to get the time to start next task</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>token</code> - authorization token</dd>
+<dt>Returns:</dt>
+<dd>callable response body</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -151,6 +185,13 @@ loadScripts(document, 'script');</script>
 @Headers("Content-Type: application/json")
 </span><span class="return-type">retrofit2.Call&lt;<a href="LoginResult.html" title="class in telegrambot.models">LoginResult</a>&gt;</span>&nbsp;<span class="element-name">login</span><wbr><span class="parameters">(@Body
  okhttp3.RequestBody&nbsp;params)</span></div>
+<div class="block">Method that performs an authorization request on the server</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>params</code> - authorization request body</dd>
+<dt>Returns:</dt>
+<dd>callable login result</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -161,7 +202,15 @@ loadScripts(document, 'script');</script>
 </span><span class="return-type">retrofit2.Call&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&gt;</span>&nbsp;<span class="element-name">getSheduleUpdate</span><wbr><span class="parameters">(@Header("authorization")
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;token,
  @Query("schedule")
- <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;shedule)</span></div>
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;schedule)</span></div>
+<div class="block">Method that performs a request to update the task execution schedule</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>token</code> - authorization token</dd>
+<dd><code>schedule</code> - schedule according to which tasks will be executed</dd>
+<dt>Returns:</dt>
+<dd>Callable list of strings</dd>
+</dl>
 </section>
 </li>
 </ul>

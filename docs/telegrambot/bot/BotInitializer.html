@@ -91,6 +91,20 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">BotInitializer</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">An initializer that creates an HTTP client, authorization on the server, as
+ well as creating and launching a telegram bot</div>
+<dl class="notes">
+<dt>Since:</dt>
+<dd>2024-05-01</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list">
+<li><a href="../models/TelegramBotBackendService.html" title="interface in telegrambot.models"><code>TelegramBotBackendService</code></a></li>
+<li><a href="../App.html" title="class in telegrambot"><code>App</code></a></li>
+<li><a href="TelegramBot.html" title="class in telegrambot.bot"><code>TelegramBot</code></a></li>
+</ul>
+</dd>
+</dl>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -105,10 +119,14 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code>private static <a href="../models/TelegramBotBackendService.html" title="interface in telegrambot.models">TelegramBotBackendService</a></code></div>
 <div class="col-second even-row-color"><code><a href="#backendHttpClientService" class="member-name-link">backendHttpClientService</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Service containing a list of available HTTP requests to the server</div>
+</div>
 <div class="col-first odd-row-color"><code>private static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color"><code><a href="#token" class="member-name-link">token</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Token for authorization on the server</div>
+</div>
 </div>
 </section>
 </li>
@@ -138,22 +156,36 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>private static void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#createBot()" class="member-name-link">createBot</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">The method creates a telegram bot</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="../models/TelegramBotBackendService.html" title="interface in telegrambot.models">TelegramBotBackendService</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getBackendHttpClientService()" class="member-name-link">getBackendHttpClientService</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">A method for obtaining a service containing a list of available HTTP requests
+ to the server</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getToken()" class="member-name-link">getToken</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Method for obtaining a token for authorization on the server</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#initialize()" class="member-name-link">initialize</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">The method creates an HTTP client, performs authorization on the server and
+ creates a telegram bot</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>private static void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#initializeBackendHttpClient()" class="member-name-link">initializeBackendHttpClient</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">The method creates an HTTP client</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>private static void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#login()" class="member-name-link">login</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">The method performs authorization on the server</div>
+</div>
 </div>
 </div>
 </div>
@@ -175,12 +207,14 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="backendHttpClientService">
 <h3>backendHttpClientService</h3>
 <div class="member-signature"><span class="modifiers">private static</span>&nbsp;<span class="return-type"><a href="../models/TelegramBotBackendService.html" title="interface in telegrambot.models">TelegramBotBackendService</a></span>&nbsp;<span class="element-name">backendHttpClientService</span></div>
+<div class="block">Service containing a list of available HTTP requests to the server</div>
 </section>
 </li>
 <li>
 <section class="detail" id="token">
 <h3>token</h3>
 <div class="member-signature"><span class="modifiers">private static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">token</span></div>
+<div class="block">Token for authorization on the server</div>
 </section>
 </li>
 </ul>
@@ -210,6 +244,8 @@ loadScripts(document, 'script');</script>
 <h3>initialize</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">initialize</span>()
                        throws <span class="exceptions">org.telegram.telegrambots.meta.exceptions.TelegramApiException</span></div>
+<div class="block">The method creates an HTTP client, performs authorization on the server and
+ creates a telegram bot</div>
 <dl class="notes">
 <dt>Throws:</dt>
 <dd><code>org.telegram.telegrambots.meta.exceptions.TelegramApiException</code></dd>
@@ -220,12 +256,14 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="initializeBackendHttpClient()">
 <h3>initializeBackendHttpClient</h3>
 <div class="member-signature"><span class="modifiers">private static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">initializeBackendHttpClient</span>()</div>
+<div class="block">The method creates an HTTP client</div>
 </section>
 </li>
 <li>
 <section class="detail" id="login()">
 <h3>login</h3>
 <div class="member-signature"><span class="modifiers">private static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">login</span>()</div>
+<div class="block">The method performs authorization on the server</div>
 </section>
 </li>
 <li>
@@ -233,6 +271,7 @@ loadScripts(document, 'script');</script>
 <h3>createBot</h3>
 <div class="member-signature"><span class="modifiers">private static</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">createBot</span>()
                        throws <span class="exceptions">org.telegram.telegrambots.meta.exceptions.TelegramApiException</span></div>
+<div class="block">The method creates a telegram bot</div>
 <dl class="notes">
 <dt>Throws:</dt>
 <dd><code>org.telegram.telegrambots.meta.exceptions.TelegramApiException</code></dd>
@@ -243,12 +282,23 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getBackendHttpClientService()">
 <h3>getBackendHttpClientService</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="../models/TelegramBotBackendService.html" title="interface in telegrambot.models">TelegramBotBackendService</a></span>&nbsp;<span class="element-name">getBackendHttpClientService</span>()</div>
+<div class="block">A method for obtaining a service containing a list of available HTTP requests
+ to the server</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>service containing a list of available HTTP requests to the server</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getToken()">
 <h3>getToken</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getToken</span>()</div>
+<div class="block">Method for obtaining a token for authorization on the server</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>token for authorization on the server</dd>
+</dl>
 </section>
 </li>
 </ul>

@@ -101,6 +101,19 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">TelegramBot</span>
 <span class="extends-implements">extends org.telegram.telegrambots.bots.TelegramLongPollingBot</span></div>
+<div class="block">Logic of telegram bot operation and auxiliary tools</div>
+<dl class="notes">
+<dt>Since:</dt>
+<dd>2024-05-01</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list">
+<li><a href="TaskThread.html" title="class in telegrambot.bot"><code>TaskThread</code></a></li>
+<li><a href="../App.html" title="class in telegrambot"><code>App</code></a></li>
+<li><a href="BotRequests.html" title="class in telegrambot.bot"><code>BotRequests</code></a></li>
+</ul>
+</dd>
+</dl>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -115,16 +128,24 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code>private final <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color"><code><a href="#BOT_TOKEN" class="member-name-link">BOT_TOKEN</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Bot token</div>
+</div>
 <div class="col-first odd-row-color"><code>private final <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color"><code><a href="#BOT_USERNAME" class="member-name-link">BOT_USERNAME</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Bot username</div>
+</div>
 <div class="col-first even-row-color"><code>private final long</code></div>
 <div class="col-second even-row-color"><code><a href="#CHAT_ID" class="member-name-link">CHAT_ID</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Chat ID with which the telegram bot will work</div>
+</div>
 <div class="col-first odd-row-color"><code>private <a href="TaskThread.html" title="class in telegrambot.bot">TaskThread</a></code></div>
 <div class="col-second odd-row-color"><code><a href="#senderThread" class="member-name-link">senderThread</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Thread performing tasks</div>
+</div>
 </div>
 <div class="inherited-list">
 <h3 id="fields-inherited-from-class-org.telegram.telegrambots.bots.DefaultAbsSender">Fields inherited from class&nbsp;org.telegram.telegrambots.bots.DefaultAbsSender</h3>
@@ -140,7 +161,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E()" class="member-name-link">TelegramBot</a>()</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">A constructor that sets the telegram bot settings and starts scheduled tasks</div>
+</div>
 </div>
 </section>
 </li>
@@ -157,30 +180,48 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>private void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#commandExecuter(java.lang.String)" class="member-name-link">commandExecuter</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;command)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">A method that implements commands supported by a telegram bot</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>private void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#generateMenuButtons(long)" class="member-name-link">generateMenuButtons</a><wbr>(long&nbsp;chatId)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">A method that generates a graphical menu for controlling a telegram bot in a
+ chat</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getBotToken()" class="member-name-link">getBotToken</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Method for getting bot token</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getBotUsername()" class="member-name-link">getBotUsername</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Method for getting bot username</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#onUpdateReceived(org.telegram.telegrambots.meta.api.objects.Update)" class="member-name-link">onUpdateReceived</a><wbr>(org.telegram.telegrambots.meta.api.objects.Update&nbsp;update)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Method that is triggered when the state of the chat in which the telegram bot
+ is located is updated</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>private void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#sendMessage(java.lang.Long,java.lang.String)" class="member-name-link">sendMessage</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;chatId,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;textToSend)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Method for sending a text message to chat</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>private void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#sendPhoto(java.lang.Long,org.telegram.telegrambots.meta.api.methods.send.SendPhoto)" class="member-name-link">sendPhoto</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;chatId,
  org.telegram.telegrambots.meta.api.methods.send.SendPhoto&nbsp;photoToSend)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Method for sending an image to chat</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#sendRandomMedia(long)" class="member-name-link">sendRandomMedia</a><wbr>(long&nbsp;chatId)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Method to send random media to chat</div>
+</div>
 </div>
 </div>
 </div>
@@ -217,24 +258,28 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="senderThread">
 <h3>senderThread</h3>
 <div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="TaskThread.html" title="class in telegrambot.bot">TaskThread</a></span>&nbsp;<span class="element-name">senderThread</span></div>
+<div class="block">Thread performing tasks</div>
 </section>
 </li>
 <li>
 <section class="detail" id="CHAT_ID">
 <h3>CHAT_ID</h3>
 <div class="member-signature"><span class="modifiers">private final</span>&nbsp;<span class="return-type">long</span>&nbsp;<span class="element-name">CHAT_ID</span></div>
+<div class="block">Chat ID with which the telegram bot will work</div>
 </section>
 </li>
 <li>
 <section class="detail" id="BOT_USERNAME">
 <h3>BOT_USERNAME</h3>
 <div class="member-signature"><span class="modifiers">private final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">BOT_USERNAME</span></div>
+<div class="block">Bot username</div>
 </section>
 </li>
 <li>
 <section class="detail" id="BOT_TOKEN">
 <h3>BOT_TOKEN</h3>
 <div class="member-signature"><span class="modifiers">private final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">BOT_TOKEN</span></div>
+<div class="block">Bot token</div>
 </section>
 </li>
 </ul>
@@ -249,6 +294,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;()">
 <h3>TelegramBot</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">TelegramBot</span>()</div>
+<div class="block">A constructor that sets the telegram bot settings and starts scheduled tasks</div>
 </section>
 </li>
 </ul>
@@ -263,29 +309,48 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="onUpdateReceived(org.telegram.telegrambots.meta.api.objects.Update)">
 <h3>onUpdateReceived</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">onUpdateReceived</span><wbr><span class="parameters">(org.telegram.telegrambots.meta.api.objects.Update&nbsp;update)</span></div>
+<div class="block">Method that is triggered when the state of the chat in which the telegram bot
+ is located is updated</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>update</code> - updated chat status with telegram bot</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="commandExecuter(java.lang.String)">
 <h3>commandExecuter</h3>
 <div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">commandExecuter</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;command)</span></div>
+<div class="block">A method that implements commands supported by a telegram bot</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>command</code> - command received by the bot when updating the chat state</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getBotUsername()">
 <h3>getBotUsername</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getBotUsername</span>()</div>
+<div class="block">Method for getting bot username</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>bot username</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getBotToken()">
 <h3>getBotToken</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getBotToken</span>()</div>
+<div class="block">Method for getting bot token</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code>getBotToken</code>&nbsp;in interface&nbsp;<code>org.telegram.telegrambots.meta.generics.TelegramBot</code></dd>
 <dt>Overrides:</dt>
 <dd><code>getBotToken</code>&nbsp;in class&nbsp;<code>org.telegram.telegrambots.bots.DefaultAbsSender</code></dd>
+<dt>Returns:</dt>
+<dd>bot token</dd>
 </dl>
 </section>
 </li>
@@ -294,6 +359,12 @@ loadScripts(document, 'script');</script>
 <h3>sendMessage</h3>
 <div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">sendMessage</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;chatId,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;textToSend)</span></div>
+<div class="block">Method for sending a text message to chat</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>chatId</code> - ID of the chat to which the message should be sent</dd>
+<dd><code>textToSend</code> - message to be sent</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -301,18 +372,35 @@ loadScripts(document, 'script');</script>
 <h3>sendPhoto</h3>
 <div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">sendPhoto</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;chatId,
  org.telegram.telegrambots.meta.api.methods.send.SendPhoto&nbsp;photoToSend)</span></div>
+<div class="block">Method for sending an image to chat</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>chatId</code> - ID of the chat to which the message should be sent</dd>
+<dd><code>photoToSend</code> - image to be sent</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="sendRandomMedia(long)">
 <h3>sendRandomMedia</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">sendRandomMedia</span><wbr><span class="parameters">(long&nbsp;chatId)</span></div>
+<div class="block">Method to send random media to chat</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>chatId</code> - chat ID to send random media to</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="generateMenuButtons(long)">
 <h3>generateMenuButtons</h3>
 <div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">generateMenuButtons</span><wbr><span class="parameters">(long&nbsp;chatId)</span></div>
+<div class="block">A method that generates a graphical menu for controlling a telegram bot in a
+ chat</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>chatId</code> - chat ID for generating graphical menu</dd>
+</dl>
 </section>
 </li>
 </ul>

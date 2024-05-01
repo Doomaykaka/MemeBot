@@ -14,16 +14,39 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMa
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import telegrambot.App;
-import telegrambot.models.Shedule;
+import telegrambot.models.Schedule;
 import telegrambot.models.Task;
 
+/**
+ * Logic of telegram bot operation and auxiliary tools
+ * 
+ * @see TaskThread
+ * @see App
+ * @see BotRequests
+ * @author Doomaykaka MIT License
+ * @since 2024-05-01
+ */
 public class TelegramBot extends TelegramLongPollingBot {
-
+	/**
+	 * Thread performing tasks
+	 */
 	private TaskThread senderThread;
+	/**
+	 * Chat ID with which the telegram bot will work
+	 */
 	private final long CHAT_ID;
+	/**
+	 * Bot username
+	 */
 	private final String BOT_USERNAME;
+	/**
+	 * Bot token
+	 */
 	private final String BOT_TOKEN;
 
+	/**
+	 * A constructor that sets the telegram bot settings and starts scheduled tasks
+	 */
 	public TelegramBot() {
 		App.getLog().info("Telegram bot sender started");
 
@@ -38,6 +61,13 @@ public class TelegramBot extends TelegramLongPollingBot {
 		}
 	}
 
+	/**
+	 * Method that is triggered when the state of the chat in which the telegram bot
+	 * is located is updated
+	 * 
+	 * @param update
+	 *            updated chat status with telegram bot
+	 */
 	@Override
 	public void onUpdateReceived(Update update) {
 		App.getLog().info("Telegram bot triggered");
@@ -59,6 +89,12 @@ public class TelegramBot extends TelegramLongPollingBot {
 		}
 	}
 
+	/**
+	 * A method that implements commands supported by a telegram bot
+	 * 
+	 * @param command
+	 *            command received by the bot when updating the chat state
+	 */
 	private void commandExecuter(String command) {
 		String[] commandParts = command.split("\\s");
 
@@ -76,10 +112,10 @@ public class TelegramBot extends TelegramLongPollingBot {
 				sendRandomMedia(CHAT_ID);
 				break;
 			case "updateSchedule" :
-				String sheduleExpression = command.replace("updateSchedule ", "");
+				String scheduleExpression = command.replace("updateSchedule ", "");
 
-				Shedule updatedShedule = BotRequests.sendUpdateSheduleRequest(sheduleExpression);
-				sendMessage(CHAT_ID, updatedShedule.toString());
+				Schedule updatedSchedule = BotRequests.sendUpdateScheduleRequest(scheduleExpression);
+				sendMessage(CHAT_ID, updatedSchedule.toString());
 				break;
 			case "menu" :
 				generateMenuButtons(CHAT_ID);
@@ -95,16 +131,34 @@ public class TelegramBot extends TelegramLongPollingBot {
 		}
 	}
 
+	/**
+	 * Method for getting bot username
+	 * 
+	 * @return bot username
+	 */
 	@Override
 	public String getBotUsername() {
 		return BOT_USERNAME;
 	}
 
+	/**
+	 * Method for getting bot token
+	 * 
+	 * @return bot token
+	 */
 	@Override
 	public String getBotToken() {
 		return BOT_TOKEN;
 	}
 
+	/**
+	 * Method for sending a text message to chat
+	 * 
+	 * @param chatId
+	 *            ID of the chat to which the message should be sent
+	 * @param textToSend
+	 *            message to be sent
+	 */
 	private void sendMessage(Long chatId, String textToSend) {
 		SendMessage sendMessage = new SendMessage();
 		sendMessage.setChatId(String.valueOf(chatId));
@@ -116,6 +170,14 @@ public class TelegramBot extends TelegramLongPollingBot {
 		}
 	}
 
+	/**
+	 * Method for sending an image to chat
+	 * 
+	 * @param chatId
+	 *            ID of the chat to which the message should be sent
+	 * @param photoToSend
+	 *            image to be sent
+	 */
 	private void sendPhoto(Long chatId, SendPhoto photoToSend) {
 		photoToSend.setChatId(String.valueOf(chatId));
 		try {
@@ -125,6 +187,12 @@ public class TelegramBot extends TelegramLongPollingBot {
 		}
 	}
 
+	/**
+	 * Method to send random media to chat
+	 * 
+	 * @param chatId
+	 *            chat ID to send random media to
+	 */
 	public void sendRandomMedia(long chatId) {
 		Task backendTask = BotRequests.getTask();
 
@@ -145,6 +213,13 @@ public class TelegramBot extends TelegramLongPollingBot {
 		}
 	}
 
+	/**
+	 * A method that generates a graphical menu for controlling a telegram bot in a
+	 * chat
+	 * 
+	 * @param chatId
+	 *            chat ID for generating graphical menu
+	 */
 	private void generateMenuButtons(long chatId) {
 		InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
 

@@ -91,6 +91,19 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">App</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">The entry point of the application, which reads the configuration, creates a
+ log, and also creates a telegram bot</div>
+<dl class="notes">
+<dt>Since:</dt>
+<dd>2024-05-01</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list">
+<li><a href="config/Config.html" title="class in telegrambot.config"><code>Config</code></a></li>
+<li><a href="bot/BotInitializer.html" title="class in telegrambot.bot"><code>BotInitializer</code></a></li>
+</ul>
+</dd>
+</dl>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -105,10 +118,14 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code>private static <a href="config/Config.html" title="class in telegrambot.config">Config</a></code></div>
 <div class="col-second even-row-color"><code><a href="#botConfig" class="member-name-link">botConfig</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Telegram bot configuration</div>
+</div>
 <div class="col-first odd-row-color"><code>private static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.logging/java/util/logging/Logger.html" title="class or interface in java.util.logging" class="external-link">Logger</a></code></div>
 <div class="col-second odd-row-color"><code><a href="#log" class="member-name-link">log</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Application logger</div>
+</div>
 </div>
 </section>
 </li>
@@ -138,13 +155,20 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="config/Config.html" title="class in telegrambot.config">Config</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getBotConfig()" class="member-name-link">getBotConfig</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Method to get a bot configuration</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.logging/java/util/logging/Logger.html" title="class or interface in java.util.logging" class="external-link">Logger</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getLog()" class="member-name-link">getLog</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Method for obtaining a logger</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#main(java.lang.String%5B%5D)" class="member-name-link">main</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>[]&nbsp;args)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">The method is the entry point to the application, reads the configuration,
+ creates a log and telegram bot</div>
+</div>
 </div>
 </div>
 </div>
@@ -166,12 +190,14 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="botConfig">
 <h3>botConfig</h3>
 <div class="member-signature"><span class="modifiers">private static</span>&nbsp;<span class="return-type"><a href="config/Config.html" title="class in telegrambot.config">Config</a></span>&nbsp;<span class="element-name">botConfig</span></div>
+<div class="block">Telegram bot configuration</div>
 </section>
 </li>
 <li>
 <section class="detail" id="log">
 <h3>log</h3>
 <div class="member-signature"><span class="modifiers">private static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.logging/java/util/logging/Logger.html" title="class or interface in java.util.logging" class="external-link">Logger</a></span>&nbsp;<span class="element-name">log</span></div>
+<div class="block">Application logger</div>
 </section>
 </li>
 </ul>
@@ -203,7 +229,11 @@ loadScripts(document, 'script');</script>
                  throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/FileNotFoundException.html" title="class or interface in java.io" class="external-link">FileNotFoundException</a>,
 <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a>,
 org.telegram.telegrambots.meta.exceptions.TelegramApiException</span></div>
+<div class="block">The method is the entry point to the application, reads the configuration,
+ creates a log and telegram bot</div>
 <dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>args</code> - array of arguments with which the application was launched</dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/FileNotFoundException.html" title="class or interface in java.io" class="external-link">FileNotFoundException</a></code></dd>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code></dd>
@@ -215,12 +245,22 @@ org.telegram.telegrambots.meta.exceptions.TelegramApiException</span></div>
 <section class="detail" id="getBotConfig()">
 <h3>getBotConfig</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="config/Config.html" title="class in telegrambot.config">Config</a></span>&nbsp;<span class="element-name">getBotConfig</span>()</div>
+<div class="block">Method to get a bot configuration</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>bot configuration</dd>
+</dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getLog()">
 <h3>getLog</h3>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.logging/java/util/logging/Logger.html" title="class or interface in java.util.logging" class="external-link">Logger</a></span>&nbsp;<span class="element-name">getLog</span>()</div>
+<div class="block">Method for obtaining a logger</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>logger</dd>
+</dl>
 </section>
 </li>
 </ul>

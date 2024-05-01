@@ -91,6 +91,11 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">Config</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Recipient of telegram bot configuration</div>
+<dl class="notes">
+<dt>Since:</dt>
+<dd>2024-05-01</dd>
+</dl>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -105,46 +110,74 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color"><code>final <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color"><code><a href="#backendLogin" class="member-name-link">backendLogin</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Server login</div>
+</div>
 <div class="col-first odd-row-color"><code>final <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color"><code><a href="#backendPassword" class="member-name-link">backendPassword</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Server password</div>
+</div>
 <div class="col-first even-row-color"><code>final <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color"><code><a href="#botBackendUrl" class="member-name-link">botBackendUrl</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Server url</div>
+</div>
 <div class="col-first odd-row-color"><code>final <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color"><code><a href="#botToken" class="member-name-link">botToken</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Token for authorization on the server</div>
+</div>
 <div class="col-first even-row-color"><code>final <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color"><code><a href="#botUsername" class="member-name-link">botUsername</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Bot username</div>
+</div>
 <div class="col-first odd-row-color"><code>final long</code></div>
 <div class="col-second odd-row-color"><code><a href="#chatId" class="member-name-link">chatId</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Chat ID with which the telegram bot will work</div>
+</div>
 <div class="col-first even-row-color"><code>private final <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color"><code><a href="#CONFIG_FILENAME" class="member-name-link">CONFIG_FILENAME</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">File name with bot settings</div>
+</div>
 <div class="col-first odd-row-color"><code>private <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/nio/file/Path.html" title="class or interface in java.nio.file" class="external-link">Path</a></code></div>
 <div class="col-second odd-row-color"><code><a href="#path" class="member-name-link">path</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Path to the bot settings file</div>
+</div>
 <div class="col-first even-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color"><code><a href="#PROPERTY_NAME_BACKEND_LOGIN" class="member-name-link">PROPERTY_NAME_BACKEND_LOGIN</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Name of the server login parameter</div>
+</div>
 <div class="col-first odd-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color"><code><a href="#PROPERTY_NAME_BACKEND_PASSWORD" class="member-name-link">PROPERTY_NAME_BACKEND_PASSWORD</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Name of the server password parameter</div>
+</div>
 <div class="col-first even-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color"><code><a href="#PROPERTY_NAME_BOT_BACKEND_URL" class="member-name-link">PROPERTY_NAME_BOT_BACKEND_URL</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Name of the server url parameter</div>
+</div>
 <div class="col-first odd-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color"><code><a href="#PROPERTY_NAME_BOT_USERNAME" class="member-name-link">PROPERTY_NAME_BOT_USERNAME</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Name of the bot username parameter</div>
+</div>
 <div class="col-first even-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color"><code><a href="#PROPERTY_NAME_CHAT_ID" class="member-name-link">PROPERTY_NAME_CHAT_ID</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Name of the chat ID parameter</div>
+</div>
 <div class="col-first odd-row-color"><code>static final <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color"><code><a href="#PROPERTY_NAME_TOKEN" class="member-name-link">PROPERTY_NAME_TOKEN</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Name of the token parameter</div>
+</div>
 </div>
 </section>
 </li>
@@ -157,7 +190,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E()" class="member-name-link">Config</a>()</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">A constructor that reads telegram bot settings from a file</div>
+</div>
 </div>
 </section>
 </li>
@@ -175,7 +210,9 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>private <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getProperty(java.util.Properties,java.lang.String)" class="member-name-link">getProperty</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Properties.html" title="class or interface in java.util" class="external-link">Properties</a>&nbsp;prop,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;propertyName)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Method that reads a parameter from an object that stores settings</div>
+</div>
 </div>
 </div>
 </div>
@@ -197,6 +234,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="PROPERTY_NAME_CHAT_ID">
 <h3>PROPERTY_NAME_CHAT_ID</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">PROPERTY_NAME_CHAT_ID</span></div>
+<div class="block">Name of the chat ID parameter</div>
 <dl class="notes">
 <dt>See Also:</dt>
 <dd>
@@ -211,6 +249,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="PROPERTY_NAME_BOT_USERNAME">
 <h3>PROPERTY_NAME_BOT_USERNAME</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">PROPERTY_NAME_BOT_USERNAME</span></div>
+<div class="block">Name of the bot username parameter</div>
 <dl class="notes">
 <dt>See Also:</dt>
 <dd>
@@ -225,6 +264,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="PROPERTY_NAME_TOKEN">
 <h3>PROPERTY_NAME_TOKEN</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">PROPERTY_NAME_TOKEN</span></div>
+<div class="block">Name of the token parameter</div>
 <dl class="notes">
 <dt>See Also:</dt>
 <dd>
@@ -239,6 +279,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="PROPERTY_NAME_BOT_BACKEND_URL">
 <h3>PROPERTY_NAME_BOT_BACKEND_URL</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">PROPERTY_NAME_BOT_BACKEND_URL</span></div>
+<div class="block">Name of the server url parameter</div>
 <dl class="notes">
 <dt>See Also:</dt>
 <dd>
@@ -253,6 +294,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="PROPERTY_NAME_BACKEND_LOGIN">
 <h3>PROPERTY_NAME_BACKEND_LOGIN</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">PROPERTY_NAME_BACKEND_LOGIN</span></div>
+<div class="block">Name of the server login parameter</div>
 <dl class="notes">
 <dt>See Also:</dt>
 <dd>
@@ -267,6 +309,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="PROPERTY_NAME_BACKEND_PASSWORD">
 <h3>PROPERTY_NAME_BACKEND_PASSWORD</h3>
 <div class="member-signature"><span class="modifiers">public static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">PROPERTY_NAME_BACKEND_PASSWORD</span></div>
+<div class="block">Name of the server password parameter</div>
 <dl class="notes">
 <dt>See Also:</dt>
 <dd>
@@ -281,42 +324,49 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="chatId">
 <h3>chatId</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type">long</span>&nbsp;<span class="element-name">chatId</span></div>
+<div class="block">Chat ID with which the telegram bot will work</div>
 </section>
 </li>
 <li>
 <section class="detail" id="botUsername">
 <h3>botUsername</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">botUsername</span></div>
+<div class="block">Bot username</div>
 </section>
 </li>
 <li>
 <section class="detail" id="botToken">
 <h3>botToken</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">botToken</span></div>
+<div class="block">Token for authorization on the server</div>
 </section>
 </li>
 <li>
 <section class="detail" id="botBackendUrl">
 <h3>botBackendUrl</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">botBackendUrl</span></div>
+<div class="block">Server url</div>
 </section>
 </li>
 <li>
 <section class="detail" id="backendLogin">
 <h3>backendLogin</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">backendLogin</span></div>
+<div class="block">Server login</div>
 </section>
 </li>
 <li>
 <section class="detail" id="backendPassword">
 <h3>backendPassword</h3>
 <div class="member-signature"><span class="modifiers">public final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">backendPassword</span></div>
+<div class="block">Server password</div>
 </section>
 </li>
 <li>
 <section class="detail" id="CONFIG_FILENAME">
 <h3>CONFIG_FILENAME</h3>
 <div class="member-signature"><span class="modifiers">private final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">CONFIG_FILENAME</span></div>
+<div class="block">File name with bot settings</div>
 <dl class="notes">
 <dt>See Also:</dt>
 <dd>
@@ -331,6 +381,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="path">
 <h3>path</h3>
 <div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/nio/file/Path.html" title="class or interface in java.nio.file" class="external-link">Path</a></span>&nbsp;<span class="element-name">path</span></div>
+<div class="block">Path to the bot settings file</div>
 </section>
 </li>
 </ul>
@@ -347,6 +398,7 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">Config</span>()
        throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/FileNotFoundException.html" title="class or interface in java.io" class="external-link">FileNotFoundException</a>,
 <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></span></div>
+<div class="block">A constructor that reads telegram bot settings from a file</div>
 <dl class="notes">
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/FileNotFoundException.html" title="class or interface in java.io" class="external-link">FileNotFoundException</a></code></dd>
@@ -368,7 +420,14 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getProperty</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Properties.html" title="class or interface in java.util" class="external-link">Properties</a>&nbsp;prop,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;propertyName)</span>
                     throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></span></div>
+<div class="block">Method that reads a parameter from an object that stores settings</div>
 <dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>prop</code> - settings storage</dd>
+<dd><code>propertyName</code> - name of the setting whose value needs to be retrieved from the
+            storage</dd>
+<dt>Returns:</dt>
+<dd>setting string value</dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code></dd>
 </dl>
