@@ -95,6 +95,8 @@ public class TelegramBot extends TelegramLongPollingBot {
      *            command received by the bot when updating the chat state
      */
     private void commandExecuter(String command) {
+        command = command.replace(getBotUsername(), "");
+
         switch (command) {
             case "recheck_tasks" :
                 senderThread.interrupt();
