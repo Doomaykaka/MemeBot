@@ -11,7 +11,6 @@ import retrofit2.Call;
 import retrofit2.Response;
 import telegrambot.App;
 import telegrambot.models.LoginResult;
-import telegrambot.models.Schedule;
 import telegrambot.models.Task;
 import telegrambot.models.TelegramBotBackendService;
 
@@ -19,7 +18,6 @@ import telegrambot.models.TelegramBotBackendService;
  * Set of requests to the server
  *
  * @see Task
- * @see Schedule
  * @author Doomaykaka MIT License
  * @since 2024-05-01
  */
@@ -29,11 +27,11 @@ public class BotRequests {
      *
      * @return a task for a telegram bot related to mailing
      */
-    public static Task getTask() {
+    public static Task getTaskByCommand(String command) {
         Task task = null;
 
         TelegramBotBackendService botService = BotInitializer.getBackendHttpClientService();
-        Call<Task> response = botService.getTask(BotInitializer.getToken());
+        Call<Task> response = botService.getTaskByCommand(BotInitializer.getToken(), command);
 
         Response<Task> responseBody = null;
         try {
@@ -116,63 +114,5 @@ public class BotRequests {
         }
 
         return token;
-    }
-
-    /**
-     * Method that performs a request to update the task execution schedule
-     *
-     * @param schedule
-     *            schedule according to which tasks will be executed
-     * @return list of nearest task completion dates
-     */
-    public static Schedule sendUpdateScheduleRequest(String schedule) {
-        Schedule scheduleResult = null;
-
-        String token = BotInitializer.getToken();
-
-        TelegramBotBackendService botService = BotInitializer.getBackendHttpClientService();
-        Call<List<String>> response = botService.getSheduleUpdate(token, schedule);
-
-        Response<List<String>> responseBody = null;
-        try {
-            responseBody = response.execute();
-
-            if (responseBody != null) {
-                scheduleResult = new Schedule((List<String>) responseBody.body());
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return scheduleResult;
-    }
-
-    /**
-     * Method that performs a request to update the search theme
-     *
-     * @param theme
-     *            search theme
-     * @return updated theme
-     */
-    public static String sendUpdateThemeRequest(String theme) {
-        String token = BotInitializer.getToken();
-
-        TelegramBotBackendService botService = BotInitializer.getBackendHttpClientService();
-        Call<String> response = botService.getThemeUpdate(token, theme);
-
-        Response<String> responseBody = null;
-        try {
-            responseBody = response.execute();
-
-            if (responseBody == null) {
-                throw new IOException("Bad response");
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return theme;
     }
 }

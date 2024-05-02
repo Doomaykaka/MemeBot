@@ -52,7 +52,7 @@ public class TaskThread extends Thread {
                 break;
             }
 
-            bot.sendRandomMedia(lastChatId);
+            bot.executeRemoteCommand(lastChatId, "get_random_task");
         }
     }
 

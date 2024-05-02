@@ -99,7 +99,6 @@ loadScripts(document, 'script');</script>
 <dd>
 <ul class="tag-list">
 <li><a href="../models/Task.html" title="class in telegrambot.models"><code>Task</code></a></li>
-<li><a href="../models/Schedule.html" title="class in telegrambot.models"><code>Schedule</code></a></li>
 </ul>
 </dd>
 </dl>
@@ -131,7 +130,7 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="../models/Task.html" title="class in telegrambot.models">Task</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getTask()" class="member-name-link">getTask</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getTaskByCommand(java.lang.String)" class="member-name-link">getTaskByCommand</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;command)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Method executing a request to receive a task related to mailing</div>
 </div>
@@ -144,16 +143,6 @@ loadScripts(document, 'script');</script>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#sendNextSendTaskTimeRequest()" class="member-name-link">sendNextSendTaskTimeRequest</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Method that performs a request to get the time to start next task</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="../models/Schedule.html" title="class in telegrambot.models">Schedule</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#sendUpdateScheduleRequest(java.lang.String)" class="member-name-link">sendUpdateScheduleRequest</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;schedule)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Method that performs a request to update the task execution schedule</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#sendUpdateThemeRequest(java.lang.String)" class="member-name-link">sendUpdateThemeRequest</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;theme)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Method that performs a request to update the search theme</div>
 </div>
 </div>
 </div>
@@ -187,9 +176,9 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="getTask()">
-<h3>getTask</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="../models/Task.html" title="class in telegrambot.models">Task</a></span>&nbsp;<span class="element-name">getTask</span>()</div>
+<section class="detail" id="getTaskByCommand(java.lang.String)">
+<h3>getTaskByCommand</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="../models/Task.html" title="class in telegrambot.models">Task</a></span>&nbsp;<span class="element-name">getTaskByCommand</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;command)</span></div>
 <div class="block">Method executing a request to receive a task related to mailing</div>
 <dl class="notes">
 <dt>Returns:</dt>
@@ -216,32 +205,6 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>token for authorization on the server</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="sendUpdateScheduleRequest(java.lang.String)">
-<h3>sendUpdateScheduleRequest</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="../models/Schedule.html" title="class in telegrambot.models">Schedule</a></span>&nbsp;<span class="element-name">sendUpdateScheduleRequest</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;schedule)</span></div>
-<div class="block">Method that performs a request to update the task execution schedule</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>schedule</code> - schedule according to which tasks will be executed</dd>
-<dt>Returns:</dt>
-<dd>list of nearest task completion dates</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="sendUpdateThemeRequest(java.lang.String)">
-<h3>sendUpdateThemeRequest</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">sendUpdateThemeRequest</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;theme)</span></div>
-<div class="block">Method that performs a request to update the search theme</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>theme</code> - search theme</dd>
-<dt>Returns:</dt>
-<dd>updated theme</dd>
 </dl>
 </section>
 </li>

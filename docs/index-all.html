@@ -49,7 +49,7 @@ loadScripts(document, 'script');</script>
 <div class="header">
 <h1>Index</h1>
 </div>
-<a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="constant-values.html">Constant&nbsp;Field&nbsp;Values</a>
+<a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="constant-values.html">Constant&nbsp;Field&nbsp;Values</a>
 <h2 class="title" id="I:A">A</h2>
 <dl class="index">
 <dt><a href="telegrambot/App.html" class="type-name-link" title="class in telegrambot">App</a> - Class in <a href="telegrambot/package-summary.html">telegrambot</a></dt>
@@ -151,6 +151,13 @@ loadScripts(document, 'script');</script>
 <div class="block">The method creates a telegram bot</div>
 </dd>
 </dl>
+<h2 class="title" id="I:E">E</h2>
+<dl class="index">
+<dt><a href="telegrambot/bot/TelegramBot.html#executeRemoteCommand(long,java.lang.String)" class="member-name-link">executeRemoteCommand(long, String)</a> - Method in class telegrambot.bot.<a href="telegrambot/bot/TelegramBot.html" title="class in telegrambot.bot">TelegramBot</a></dt>
+<dd>
+<div class="block">Method to send random media to chat</div>
+</dd>
+</dl>
 <h2 class="title" id="I:G">G</h2>
 <dl class="index">
 <dt><a href="telegrambot/bot/TelegramBot.html#generateMenuButtons(long)" class="member-name-link">generateMenuButtons(long)</a> - Method in class telegrambot.bot.<a href="telegrambot/bot/TelegramBot.html" title="class in telegrambot.bot">TelegramBot</a></dt>
@@ -196,25 +203,13 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Method that reads a parameter from an object that stores settings</div>
 </dd>
-<dt><a href="telegrambot/models/Schedule.html#getSchedule()" class="member-name-link">getSchedule()</a> - Method in class telegrambot.models.<a href="telegrambot/models/Schedule.html" title="class in telegrambot.models">Schedule</a></dt>
-<dd>
-<div class="block">Method for getting a list of tasks</div>
-</dd>
-<dt><a href="telegrambot/models/TelegramBotBackendService.html#getSheduleUpdate(java.lang.String,java.lang.String)" class="member-name-link">getSheduleUpdate(String, String)</a> - Method in interface telegrambot.models.<a href="telegrambot/models/TelegramBotBackendService.html" title="interface in telegrambot.models">TelegramBotBackendService</a></dt>
-<dd>
-<div class="block">Method that performs a request to update the task execution schedule</div>
-</dd>
-<dt><a href="telegrambot/bot/BotRequests.html#getTask()" class="member-name-link">getTask()</a> - Static method in class telegrambot.bot.<a href="telegrambot/bot/BotRequests.html" title="class in telegrambot.bot">BotRequests</a></dt>
+<dt><a href="telegrambot/bot/BotRequests.html#getTaskByCommand(java.lang.String)" class="member-name-link">getTaskByCommand(String)</a> - Static method in class telegrambot.bot.<a href="telegrambot/bot/BotRequests.html" title="class in telegrambot.bot">BotRequests</a></dt>
 <dd>
 <div class="block">Method executing a request to receive a task related to mailing</div>
 </dd>
-<dt><a href="telegrambot/models/TelegramBotBackendService.html#getTask(java.lang.String)" class="member-name-link">getTask(String)</a> - Method in interface telegrambot.models.<a href="telegrambot/models/TelegramBotBackendService.html" title="interface in telegrambot.models">TelegramBotBackendService</a></dt>
+<dt><a href="telegrambot/models/TelegramBotBackendService.html#getTaskByCommand(java.lang.String,java.lang.String)" class="member-name-link">getTaskByCommand(String, String)</a> - Method in interface telegrambot.models.<a href="telegrambot/models/TelegramBotBackendService.html" title="interface in telegrambot.models">TelegramBotBackendService</a></dt>
 <dd>
 <div class="block">Method executing a request to receive a task related to mailing</div>
-</dd>
-<dt><a href="telegrambot/models/TelegramBotBackendService.html#getThemeUpdate(java.lang.String,java.lang.String)" class="member-name-link">getThemeUpdate(String, String)</a> - Method in interface telegrambot.models.<a href="telegrambot/models/TelegramBotBackendService.html" title="interface in telegrambot.models">TelegramBotBackendService</a></dt>
-<dd>
-<div class="block">A method that performs a request to update the topic of the received content.</div>
 </dd>
 <dt><a href="telegrambot/bot/BotInitializer.html#getToken()" class="member-name-link">getToken()</a> - Static method in class telegrambot.bot.<a href="telegrambot/bot/BotInitializer.html" title="class in telegrambot.bot">BotInitializer</a></dt>
 <dd>
@@ -325,18 +320,6 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:S">S</h2>
 <dl class="index">
-<dt><a href="telegrambot/models/Schedule.html#schedule" class="member-name-link">schedule</a> - Variable in class telegrambot.models.<a href="telegrambot/models/Schedule.html" title="class in telegrambot.models">Schedule</a></dt>
-<dd>
-<div class="block">List of tasks for telegram bot</div>
-</dd>
-<dt><a href="telegrambot/models/Schedule.html" class="type-name-link" title="class in telegrambot.models">Schedule</a> - Class in <a href="telegrambot/models/package-summary.html">telegrambot.models</a></dt>
-<dd>
-<div class="block">Task schedule for telegram bot</div>
-</dd>
-<dt><a href="telegrambot/models/Schedule.html#%3Cinit%3E(java.util.List)" class="member-name-link">Schedule(List&lt;String&gt;)</a> - Constructor for class telegrambot.models.<a href="telegrambot/models/Schedule.html" title="class in telegrambot.models">Schedule</a></dt>
-<dd>
-<div class="block">Constructor that sets the list of tasks for the model</div>
-</dd>
 <dt><a href="telegrambot/bot/TelegramBot.html#senderThread" class="member-name-link">senderThread</a> - Variable in class telegrambot.bot.<a href="telegrambot/bot/TelegramBot.html" title="class in telegrambot.bot">TelegramBot</a></dt>
 <dd>
 <div class="block">Thread performing tasks</div>
@@ -357,18 +340,6 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Method for sending an image to chat</div>
 </dd>
-<dt><a href="telegrambot/bot/TelegramBot.html#sendRandomMedia(long)" class="member-name-link">sendRandomMedia(long)</a> - Method in class telegrambot.bot.<a href="telegrambot/bot/TelegramBot.html" title="class in telegrambot.bot">TelegramBot</a></dt>
-<dd>
-<div class="block">Method to send random media to chat</div>
-</dd>
-<dt><a href="telegrambot/bot/BotRequests.html#sendUpdateScheduleRequest(java.lang.String)" class="member-name-link">sendUpdateScheduleRequest(String)</a> - Static method in class telegrambot.bot.<a href="telegrambot/bot/BotRequests.html" title="class in telegrambot.bot">BotRequests</a></dt>
-<dd>
-<div class="block">Method that performs a request to update the task execution schedule</div>
-</dd>
-<dt><a href="telegrambot/bot/BotRequests.html#sendUpdateThemeRequest(java.lang.String)" class="member-name-link">sendUpdateThemeRequest(String)</a> - Static method in class telegrambot.bot.<a href="telegrambot/bot/BotRequests.html" title="class in telegrambot.bot">BotRequests</a></dt>
-<dd>
-<div class="block">Method that performs a request to update the search theme</div>
-</dd>
 <dt><a href="telegrambot/models/Task.html#setContent(java.lang.String)" class="member-name-link">setContent(String)</a> - Method in class telegrambot.models.<a href="telegrambot/models/Task.html" title="class in telegrambot.models">Task</a></dt>
 <dd>
 <div class="block">Method for changing content</div>
@@ -377,10 +348,6 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Method for changing the ID of the chat for which the task needs to be
  completed</div>
-</dd>
-<dt><a href="telegrambot/models/Schedule.html#setSchedule(java.util.List)" class="member-name-link">setSchedule(List&lt;String&gt;)</a> - Method in class telegrambot.models.<a href="telegrambot/models/Schedule.html" title="class in telegrambot.models">Schedule</a></dt>
-<dd>
-<div class="block">Method for changing a list of tasks</div>
 </dd>
 <dt><a href="telegrambot/models/LoginResult.html#setToken(java.lang.String)" class="member-name-link">setToken(String)</a> - Method in class telegrambot.models.<a href="telegrambot/models/LoginResult.html" title="class in telegrambot.models">LoginResult</a></dt>
 <dd>
@@ -446,16 +413,12 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">A token that allows authorized users to perform requests</div>
 </dd>
-<dt><a href="telegrambot/models/Schedule.html#toString()" class="member-name-link">toString()</a> - Method in class telegrambot.models.<a href="telegrambot/models/Schedule.html" title="class in telegrambot.models">Schedule</a></dt>
-<dd>
-<div class="block">Method for obtaining a string representation of a model's task schedule</div>
-</dd>
 <dt><a href="telegrambot/models/Task.html#type" class="member-name-link">type</a> - Variable in class telegrambot.models.<a href="telegrambot/models/Task.html" title="class in telegrambot.models">Task</a></dt>
 <dd>
 <div class="block">Type of content to be processed</div>
 </dd>
 </dl>
-<a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="constant-values.html">Constant&nbsp;Field&nbsp;Values</a></main>
+<a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="constant-values.html">Constant&nbsp;Field&nbsp;Values</a></main>
 </div>
 </div>
 </body>

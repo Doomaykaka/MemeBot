@@ -14,7 +14,6 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMa
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import telegrambot.App;
-import telegrambot.models.Schedule;
 import telegrambot.models.Task;
 
 /**
@@ -72,7 +71,7 @@ public class TelegramBot extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
         App.getLog().info("Telegram bot triggered");
 
-        if (update.hasMessage() && update.hasMessage() && update.getMessage().getChatId() == CHAT_ID) {
+        if (update.hasMessage() && update.getMessage().getChatId() == CHAT_ID) {
             if (update.getMessage().hasText()) {
                 String message = update.getMessage().getText();
 
@@ -96,45 +95,18 @@ public class TelegramBot extends TelegramLongPollingBot {
      *            command received by the bot when updating the chat state
      */
     private void commandExecuter(String command) {
-        String[] commandParts = command.split("\\s");
-
-        switch (commandParts[0]) {
-            case "recheckTasks" :
+        switch (command) {
+            case "recheck_tasks" :
                 senderThread.interrupt();
                 senderThread = new TaskThread(this);
                 senderThread.start();
                 senderThread.setLastChatId(CHAT_ID);
                 break;
-            case "start" :
-                sendMessage(CHAT_ID, "Hello");
-                break;
-            case "getTask" :
-                sendRandomMedia(CHAT_ID);
-                break;
-            case "updateSchedule" :
-                String scheduleExpression = command.replace("updateSchedule ", "");
-
-                Schedule updatedSchedule = BotRequests.sendUpdateScheduleRequest(scheduleExpression);
-                sendMessage(CHAT_ID, updatedSchedule.toString());
-                break;
-            case "updateTheme" :
-                String newTheme = command.replace("updateTheme ", "");
-
-                String updatedTheme = BotRequests.sendUpdateThemeRequest(newTheme);
-                sendMessage(CHAT_ID, "Current theme: " + updatedTheme);
-                break;
             case "menu" :
                 generateMenuButtons(CHAT_ID);
                 break;
-            case "help" :
-                String help = "Commands: \n" + "/menu - push-button menu \n" + "/recheckTasks - update bot tasks \n"
-                        + "/start - start bot using \n" + "/getTask - request a new task \n"
-                        + "/updateSchedule - update schedule\n" + "/updateTheme - update meme theme\n"
-                        + "/help - commands description";
-                sendMessage(CHAT_ID, help);
-                break;
             default :
-                sendMessage(CHAT_ID, "Bad command");
+                executeRemoteCommand(CHAT_ID, command);
         }
     }
 
@@ -200,8 +172,8 @@ public class TelegramBot extends TelegramLongPollingBot {
      * @param chatId
      *            chat ID to send random media to
      */
-    public void sendRandomMedia(long chatId) {
-        Task backendTask = BotRequests.getTask();
+    public void executeRemoteCommand(long chatId, String command) {
+        Task backendTask = BotRequests.getTaskByCommand(command);
 
         switch (backendTask.getType()) {
             case "TEXT" :
@@ -228,6 +200,8 @@ public class TelegramBot extends TelegramLongPollingBot {
      *            chat ID for generating graphical menu
      */
     private void generateMenuButtons(long chatId) {
+        // TODO: Create dynamically by means of querying a command list from backend.
+
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
 
         InlineKeyboardButton recheckTasksButton = new InlineKeyboardButton();
@@ -236,11 +210,11 @@ public class TelegramBot extends TelegramLongPollingBot {
         InlineKeyboardButton help = new InlineKeyboardButton();
 
         recheckTasksButton.setText("Recheck tasks");
-        recheckTasksButton.setCallbackData("recheckTasks");
+        recheckTasksButton.setCallbackData("recheck_tasks");
         start.setText("Start bot");
         start.setCallbackData("start");
-        getTask.setText("Get task");
-        getTask.setCallbackData("getTask");
+        getTask.setText("Get random task");
+        getTask.setCallbackData("get_random_task");
         help.setText("Help");
         help.setCallbackData("help");
 
