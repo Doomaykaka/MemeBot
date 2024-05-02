@@ -16,6 +16,8 @@
 
 Последнюю версию приложения можно скачать с GitHub Releases.
 
+GitHub Releases: [link](https://github.com/Doomaykaka/MemeBot/releases)
+
 Для использования telegram бота его необходимо запустить.
 
 ```bash
