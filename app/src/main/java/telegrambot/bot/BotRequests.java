@@ -23,9 +23,10 @@ import telegrambot.models.TelegramBotBackendService;
  */
 public class BotRequests {
     /**
-     * Method executing a request to receive a task related to mailing
+     * A method that makes a request to get a task that the bot needs to perform
      *
-     * @return a task for a telegram bot related to mailing
+     * @return A method that makes a request to get a task that the bot needs to
+     *         perform
      */
     public static Task getTaskByCommand(String command) {
         Task task = null;

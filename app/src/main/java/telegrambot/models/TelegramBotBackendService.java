@@ -21,7 +21,7 @@ import retrofit2.http.Query;
  */
 public interface TelegramBotBackendService {
     /**
-     * Method executing a request to receive a task related to mailing
+     * Method executing a request to get a task that the bot needs to perform
      *
      * @param token
      *            authorization token

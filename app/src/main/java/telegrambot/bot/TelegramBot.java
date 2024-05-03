@@ -103,6 +103,10 @@ public class TelegramBot extends TelegramLongPollingBot {
                 senderThread = new TaskThread(this);
                 senderThread.start();
                 senderThread.setLastChatId(CHAT_ID);
+
+                if (senderThread.isAlive()) {
+                    sendMessage(CHAT_ID, "Tasks updated");
+                }
                 break;
             case "menu" :
                 generateMenuButtons(CHAT_ID);
