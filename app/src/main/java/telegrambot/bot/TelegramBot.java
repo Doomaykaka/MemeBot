@@ -177,24 +177,30 @@ public class TelegramBot extends TelegramLongPollingBot {
      *
      * @param chatId
      *            chat ID to send random media to
+     * @param command
+     *            remote command to be executed
      */
     public void executeRemoteCommand(long chatId, String command) {
         Task backendTask = BotRequests.getTaskByCommand(command);
 
-        switch (backendTask.getType()) {
-            case "TEXT" :
-                sendMessage(CHAT_ID, backendTask.getContent());
-                break;
-            case "IMAGE" :
-                InputStream imgStream = new ByteArrayInputStream(
-                        Base64.getDecoder().decode(backendTask.getContent().getBytes()));
-                SendPhoto photoToSend = new SendPhoto();
-                photoToSend.setPhoto(new InputFile(imgStream, "image.jpg"));
+        boolean taskHaveImage = backendTask.getImage() != null;
+        boolean taskHaveText = backendTask.getText() != null;
 
-                sendPhoto(CHAT_ID, photoToSend);
-                break;
-            default :
-                App.getLog().info("Media not parsed");
+        if (taskHaveImage) {
+            InputStream imgStream = new ByteArrayInputStream(
+                    Base64.getDecoder().decode(backendTask.getImage().getBytes()));
+            SendPhoto photoToSend = new SendPhoto();
+            photoToSend.setPhoto(new InputFile(imgStream, "image.jpg"));
+
+            sendPhoto(CHAT_ID, photoToSend);
+        }
+
+        if (taskHaveText) {
+            sendMessage(CHAT_ID, backendTask.getText());
+        }
+
+        if (!taskHaveImage && !taskHaveText) {
+            App.getLog().info("Media not parsed");
         }
     }
 

@@ -8,63 +8,63 @@ package telegrambot.models;
  */
 public class Task {
     /**
-     * Type of content to be processed
+     * Text to be processed
      */
-    private String type;
+    private String text;
     /**
-     * Content that needs to be processed
+     * Image to be processed
      */
-    private String content;
+    private String image;
 
     /**
      * Constructor that sets the type and content to be processed
      *
-     * @param type
-     *            type to be processed
-     * @param content
-     *            content to be processed
+     * @param text
+     *            text to be processed
+     * @param image
+     *            image to be processed
      */
-    public Task(String type, String content) {
+    public Task(String text, String image) {
         super();
-        this.type = type;
-        this.content = content;
+        this.text = text;
+        this.image = image;
     }
 
     /**
-     * Method to get content type
+     * Method to get text
      *
-     * @return content type
+     * @return text
      */
-    public String getType() {
-        return type;
+    public String getText() {
+        return text;
     }
 
     /**
-     * Method for changing content type
+     * Method for changing text
      *
-     * @param type
-     *            new content type value
+     * @param text
+     *            new text value
      */
-    public void setType(String type) {
-        this.type = type;
+    public void setText(String text) {
+        this.text = text;
     }
 
     /**
-     * Method to get content
+     * Method to get image
      *
-     * @return content
+     * @return image
      */
-    public String getContent() {
-        return content;
+    public String getImage() {
+        return image;
     }
 
     /**
-     * Method for changing content
+     * Method for changing image
      *
-     * @param content
-     *            new content value
+     * @param image
+     *            new image value
      */
-    public void setContent(String content) {
-        this.content = content;
+    public void setImage(String image) {
+        this.image = image;
     }
 }

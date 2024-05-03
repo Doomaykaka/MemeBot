@@ -142,10 +142,6 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">File name with bot settings</div>
 </dd>
-<dt><a href="telegrambot/models/Task.html#content" class="member-name-link">content</a> - Variable in class telegrambot.models.<a href="telegrambot/models/Task.html" title="class in telegrambot.models">Task</a></dt>
-<dd>
-<div class="block">Content that needs to be processed</div>
-</dd>
 <dt><a href="telegrambot/bot/BotInitializer.html#createBot()" class="member-name-link">createBot()</a> - Static method in class telegrambot.bot.<a href="telegrambot/bot/BotInitializer.html" title="class in telegrambot.bot">BotInitializer</a></dt>
 <dd>
 <div class="block">The method creates a telegram bot</div>
@@ -182,9 +178,9 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Method for getting bot username</div>
 </dd>
-<dt><a href="telegrambot/models/Task.html#getContent()" class="member-name-link">getContent()</a> - Method in class telegrambot.models.<a href="telegrambot/models/Task.html" title="class in telegrambot.models">Task</a></dt>
+<dt><a href="telegrambot/models/Task.html#getImage()" class="member-name-link">getImage()</a> - Method in class telegrambot.models.<a href="telegrambot/models/Task.html" title="class in telegrambot.models">Task</a></dt>
 <dd>
-<div class="block">Method to get content</div>
+<div class="block">Method to get image</div>
 </dd>
 <dt><a href="telegrambot/bot/TaskThread.html#getLastChatId()" class="member-name-link">getLastChatId()</a> - Method in class telegrambot.bot.<a href="telegrambot/bot/TaskThread.html" title="class in telegrambot.bot">TaskThread</a></dt>
 <dd>
@@ -211,6 +207,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Method executing a request to get a task that the bot needs to perform</div>
 </dd>
+<dt><a href="telegrambot/models/Task.html#getText()" class="member-name-link">getText()</a> - Method in class telegrambot.models.<a href="telegrambot/models/Task.html" title="class in telegrambot.models">Task</a></dt>
+<dd>
+<div class="block">Method to get text</div>
+</dd>
 <dt><a href="telegrambot/bot/BotInitializer.html#getToken()" class="member-name-link">getToken()</a> - Static method in class telegrambot.bot.<a href="telegrambot/bot/BotInitializer.html" title="class in telegrambot.bot">BotInitializer</a></dt>
 <dd>
 <div class="block">Method for obtaining a token for authorization on the server</div>
@@ -219,13 +219,13 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Method for obtaining an authorization token</div>
 </dd>
-<dt><a href="telegrambot/models/Task.html#getType()" class="member-name-link">getType()</a> - Method in class telegrambot.models.<a href="telegrambot/models/Task.html" title="class in telegrambot.models">Task</a></dt>
-<dd>
-<div class="block">Method to get content type</div>
-</dd>
 </dl>
 <h2 class="title" id="I:I">I</h2>
 <dl class="index">
+<dt><a href="telegrambot/models/Task.html#image" class="member-name-link">image</a> - Variable in class telegrambot.models.<a href="telegrambot/models/Task.html" title="class in telegrambot.models">Task</a></dt>
+<dd>
+<div class="block">Image to be processed</div>
+</dd>
 <dt><a href="telegrambot/bot/BotInitializer.html#initialize()" class="member-name-link">initialize()</a> - Static method in class telegrambot.bot.<a href="telegrambot/bot/BotInitializer.html" title="class in telegrambot.bot">BotInitializer</a></dt>
 <dd>
 <div class="block">The method creates an HTTP client, performs authorization on the server and
@@ -340,22 +340,22 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Method for sending an image to chat</div>
 </dd>
-<dt><a href="telegrambot/models/Task.html#setContent(java.lang.String)" class="member-name-link">setContent(String)</a> - Method in class telegrambot.models.<a href="telegrambot/models/Task.html" title="class in telegrambot.models">Task</a></dt>
+<dt><a href="telegrambot/models/Task.html#setImage(java.lang.String)" class="member-name-link">setImage(String)</a> - Method in class telegrambot.models.<a href="telegrambot/models/Task.html" title="class in telegrambot.models">Task</a></dt>
 <dd>
-<div class="block">Method for changing content</div>
+<div class="block">Method for changing image</div>
 </dd>
 <dt><a href="telegrambot/bot/TaskThread.html#setLastChatId(long)" class="member-name-link">setLastChatId(long)</a> - Method in class telegrambot.bot.<a href="telegrambot/bot/TaskThread.html" title="class in telegrambot.bot">TaskThread</a></dt>
 <dd>
 <div class="block">Method for changing the ID of the chat for which the task needs to be
  completed</div>
 </dd>
+<dt><a href="telegrambot/models/Task.html#setText(java.lang.String)" class="member-name-link">setText(String)</a> - Method in class telegrambot.models.<a href="telegrambot/models/Task.html" title="class in telegrambot.models">Task</a></dt>
+<dd>
+<div class="block">Method for changing text</div>
+</dd>
 <dt><a href="telegrambot/models/LoginResult.html#setToken(java.lang.String)" class="member-name-link">setToken(String)</a> - Method in class telegrambot.models.<a href="telegrambot/models/LoginResult.html" title="class in telegrambot.models">LoginResult</a></dt>
 <dd>
 <div class="block">Method for changing authorization token</div>
-</dd>
-<dt><a href="telegrambot/models/Task.html#setType(java.lang.String)" class="member-name-link">setType(String)</a> - Method in class telegrambot.models.<a href="telegrambot/models/Task.html" title="class in telegrambot.models">Task</a></dt>
-<dd>
-<div class="block">Method for changing content type</div>
 </dd>
 </dl>
 <h2 class="title" id="I:T">T</h2>
@@ -405,6 +405,10 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Description of the set of requests to the server</div>
 </dd>
+<dt><a href="telegrambot/models/Task.html#text" class="member-name-link">text</a> - Variable in class telegrambot.models.<a href="telegrambot/models/Task.html" title="class in telegrambot.models">Task</a></dt>
+<dd>
+<div class="block">Text to be processed</div>
+</dd>
 <dt><a href="telegrambot/bot/BotInitializer.html#token" class="member-name-link">token</a> - Static variable in class telegrambot.bot.<a href="telegrambot/bot/BotInitializer.html" title="class in telegrambot.bot">BotInitializer</a></dt>
 <dd>
 <div class="block">Token for authorization on the server</div>
@@ -412,10 +416,6 @@ loadScripts(document, 'script');</script>
 <dt><a href="telegrambot/models/LoginResult.html#token" class="member-name-link">token</a> - Variable in class telegrambot.models.<a href="telegrambot/models/LoginResult.html" title="class in telegrambot.models">LoginResult</a></dt>
 <dd>
 <div class="block">A token that allows authorized users to perform requests</div>
-</dd>
-<dt><a href="telegrambot/models/Task.html#type" class="member-name-link">type</a> - Variable in class telegrambot.models.<a href="telegrambot/models/Task.html" title="class in telegrambot.models">Task</a></dt>
-<dd>
-<div class="block">Type of content to be processed</div>
 </dd>
 </dl>
 <a href="#I:A">A</a>&nbsp;<a href="#I:B">B</a>&nbsp;<a href="#I:C">C</a>&nbsp;<a href="#I:E">E</a>&nbsp;<a href="#I:G">G</a>&nbsp;<a href="#I:I">I</a>&nbsp;<a href="#I:L">L</a>&nbsp;<a href="#I:M">M</a>&nbsp;<a href="#I:O">O</a>&nbsp;<a href="#I:P">P</a>&nbsp;<a href="#I:R">R</a>&nbsp;<a href="#I:S">S</a>&nbsp;<a href="#I:T">T</a>&nbsp;<br><a href="allclasses-index.html">All&nbsp;Classes&nbsp;and&nbsp;Interfaces</a><span class="vertical-separator">|</span><a href="allpackages-index.html">All&nbsp;Packages</a><span class="vertical-separator">|</span><a href="constant-values.html">Constant&nbsp;Field&nbsp;Values</a></main>
