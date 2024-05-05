@@ -5,10 +5,20 @@ package telegrambot;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
+import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Logger;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import telegrambot.bot.BotInitializer;
+import telegrambot.bot.BotRequests;
+import telegrambot.config.Config;
+import telegrambot.models.Task;
 
 class AppTest {
     @Test
@@ -17,5 +27,84 @@ class AppTest {
         Method[] methods = classUnderTest.getClass().getMethods();
         List<String> methodsNames = Arrays.stream(methods).map(method -> method.getName()).toList();
         assertTrue(methodsNames.contains("main"), "app should have a main");
+    }
+
+    @Nested
+    class BotRequestsTest {
+        @BeforeAll
+        static void initApplicationEnvironment() {
+            try {
+                Config cfg = new Config();
+
+                cfg.backendLogin = "user";
+                cfg.backendPassword = "pass";
+                cfg.botBackendUrl = "http://localhost";
+                cfg.botToken = "token";
+                cfg.botUsername = "testBot";
+                cfg.chatId = 0;
+
+                App.setBotConfig(cfg);
+                App.setLog(Logger.getLogger("appLog"));
+                BotInitializer.initialize();
+            } catch (IOException | TelegramApiException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Test
+        void getTaskByCommandTest() {
+            TelegramBotBackendServiceMock botServiceMock = new TelegramBotBackendServiceMock();
+            botServiceMock.setCorrect(true);
+            BotInitializer.setBackendHttpClientService(botServiceMock);
+
+            Task taskByCommand = BotRequests.getTaskByCommand("testCommand");
+
+            assertEquals(taskByCommand.getImage(), null);
+            assertEquals(taskByCommand.getText(), "Hello");
+
+            botServiceMock.setCorrect(false);
+            BotInitializer.setBackendHttpClientService(botServiceMock);
+
+            taskByCommand = BotRequests.getTaskByCommand("testCommand");
+
+            assertEquals(taskByCommand.getImage(), null);
+            assertEquals(taskByCommand.getText(), null);
+        }
+
+        @Test
+        void sendNextSendTaskTimeRequestTest() {
+            TelegramBotBackendServiceMock botServiceMock = new TelegramBotBackendServiceMock();
+            botServiceMock.setCorrect(true);
+            BotInitializer.setBackendHttpClientService(botServiceMock);
+
+            ZonedDateTime zonedDateTimeResponse = BotRequests.sendNextSendTaskTimeRequest();
+
+            assertNotEquals(zonedDateTimeResponse, null);
+
+            botServiceMock.setCorrect(false);
+            BotInitializer.setBackendHttpClientService(botServiceMock);
+
+            zonedDateTimeResponse = BotRequests.sendNextSendTaskTimeRequest();
+
+            assertEquals(zonedDateTimeResponse, null);
+        }
+
+        @Test
+        void sendLoginRequestTest() {
+            TelegramBotBackendServiceMock botServiceMock = new TelegramBotBackendServiceMock();
+            botServiceMock.setCorrect(true);
+            BotInitializer.setBackendHttpClientService(botServiceMock);
+
+            String token = BotRequests.sendLoginRequest();
+
+            assertEquals(token, "123");
+
+            botServiceMock.setCorrect(false);
+            BotInitializer.setBackendHttpClientService(botServiceMock);
+
+            token = BotRequests.sendLoginRequest();
+
+            assertEquals(token, null);
+        }
     }
 }

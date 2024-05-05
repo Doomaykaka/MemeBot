@@ -27,6 +27,7 @@ public class BotInitializer {
      * Service containing a list of available HTTP requests to the server
      */
     private static TelegramBotBackendService backendHttpClientService;
+
     /**
      * Token for authorization on the server
      */
@@ -101,5 +102,16 @@ public class BotInitializer {
      */
     public static String getToken() {
         return token;
+    }
+
+    /**
+     * Method for changing a service containing a list of available HTTP requests to
+     * the server
+     *
+     * @param backendHttpClientService
+     *            new service
+     */
+    public static void setBackendHttpClientService(TelegramBotBackendService backendHttpClientService) {
+        BotInitializer.backendHttpClientService = backendHttpClientService;
     }
 }

@@ -2,6 +2,7 @@ package telegrambot.bot;
 
 import java.io.IOException;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -75,7 +76,7 @@ public class BotRequests {
                 nextSendTime = ZonedDateTime.parse(time);
             }
 
-        } catch (IOException e) {
+        } catch (IOException | DateTimeParseException e) {
             e.printStackTrace();
         }
 

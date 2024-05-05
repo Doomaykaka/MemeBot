@@ -5,9 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Properties;
-import telegrambot.App;
-import telegrambot.bot.BotRequests;
-import telegrambot.bot.TaskThread;
 
 /**
  * Recipient of telegram bot configuration
@@ -44,32 +41,32 @@ public class Config {
     /**
      * Chat ID with which the telegram bot will work
      */
-    public final long chatId;
+    public long chatId;
     /**
      * Bot username
      */
-    public final String botUsername;
+    public String botUsername;
     /**
      * Token for authorization on the server
      */
-    public final String botToken;
+    public String botToken;
     /**
      * Server url
      */
-    public final String botBackendUrl;
+    public String botBackendUrl;
     /**
      * Server login
      */
-    public final String backendLogin;
+    public String backendLogin;
     /**
      * Server password
      */
-    public final String backendPassword;
+    public String backendPassword;
 
     /**
      * File name with bot settings
      */
-    private final String CONFIG_FILENAME = "settings.conf";
+    private String CONFIG_FILENAME = "settings.conf";
 
     /**
      * Path to the bot settings file

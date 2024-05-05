@@ -21,6 +21,7 @@ public class App {
      * Telegram bot configuration
      */
     private static Config botConfig;
+
     /**
      * Application logger
      */
@@ -63,5 +64,13 @@ public class App {
      */
     public static Logger getLog() {
         return log;
+    }
+
+    public static void setBotConfig(Config botConfig) {
+        App.botConfig = botConfig;
+    }
+
+    public static void setLog(Logger log) {
+        App.log = log;
     }
 }
