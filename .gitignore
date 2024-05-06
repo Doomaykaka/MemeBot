@@ -3,7 +3,6 @@
 build/
 settings.conf
 *.log
-log.txt
 __pycache__/
 
 # Ignore Gradle GUI config

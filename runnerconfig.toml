@@ -1,9 +1,23 @@
+[production]
+
+jar_path = "memeBotTelegramBot.jar"
+
+[production.stdout]
+path = "bot.log"
+mode = "w"
+
+[production.stderr]
+path = "bot.log"
+mode = "w"
+
+[testing]
+
 jar_path = "app/build/libs/memeBotTelegramBot.jar"
 
-[stdout]
-path = "log.txt"
-mode = "w"
+[testing.stdout]
+path = "out.log"
+mode = "a"
 
-[stderr]
-path = "log.txt"
-mode = "w"
+[testing.stderr]
+path = "err.log"
+mode = "a"

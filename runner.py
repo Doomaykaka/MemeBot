@@ -23,13 +23,17 @@ SOFTWARE.
 """
 
 __author__ = "v01d"
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 
+from argparse import ArgumentParser
+from contextlib import suppress
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Any, Final
-from tomllib import load
 from subprocess import Popen
+from time import asctime
+from typing import IO, Any, Final
+
+from tomllib import load
 
 
 CONFIG_FILE: Final[Path] = Path("./runnerconfig.toml").resolve()
@@ -63,16 +67,30 @@ class Config:
         )
 
 
-def load_config() -> Config:
+def load_config(environment: str) -> Config:
     with CONFIG_FILE.open("rb") as config_file:
-        raw_config = load(config_file)
+        raw_configs = load(config_file)
 
-    return Config.from_raw(raw_config)
+    try:
+        raw_environment_config = raw_configs[environment]
+    except KeyError as e:
+        raise ValueError(f"No environment '{environment}' in {CONFIG_FILE.name}") from e
 
+    return Config.from_raw(raw_environment_config)
+
+
+def log_runner(stream: IO[str], text: str):
+    message = f"[RUNNER] {asctime()} -- {text}"
+    print(message)
+    print(message, file=stream)
 
 
 def main():
-    config = load_config()
+    parser = ArgumentParser()
+    parser.add_argument("environment", help=f"Environment from {CONFIG_FILE.name}")
+    argv = parser.parse_args()
+
+    config = load_config(argv.environment)
 
     with (
         config.stdout_file.path.open(config.stdout_file.mode, encoding="utf-8") as stdout,
@@ -83,7 +101,12 @@ def main():
             stderr=stderr,
         ) as process,
     ):
-        process.wait()
+        log_runner(stdout, f"Process with pid {process.pid} started in {argv.environment} environment.")
+
+        with suppress(KeyboardInterrupt):
+            process.wait()
+
+        log_runner(stdout, "Runner exited")
 
 
 if __name__ == "__main__":
