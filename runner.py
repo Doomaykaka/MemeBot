@@ -23,21 +23,32 @@ SOFTWARE.
 """
 
 __author__ = "v01d"
-__version__ = "1.0.1"
+__version__ = "1.1.0"
 
 from argparse import ArgumentParser
-from contextlib import suppress
 from dataclasses import dataclass
-from io import SEEK_END
+from logging import INFO, basicConfig, getLogger
 from pathlib import Path
 from subprocess import Popen
-from time import asctime
-from typing import IO, Any, Final
+from typing import Any, Final
 
 from tomllib import load
 
 
 CONFIG_FILE: Final[Path] = Path("./runnerconfig.toml").resolve()
+LOG_FILE: Final[Path] = Path("./runner.log").resolve()
+LOG_FORMAT: Final[str] = "%(asctime)s - %(name)s - %(levelname)s - %(funcName)s - %(message)s"
+LOG_LEVEL: Final[int] = INFO
+
+
+basicConfig(
+    filename=LOG_FILE,
+    filemode="a",
+    format=LOG_FORMAT,
+    level=LOG_LEVEL,
+)
+
+logger = getLogger("RUNNER")
 
 
 @dataclass
@@ -80,14 +91,6 @@ def load_config(environment: str) -> Config:
     return Config.from_raw(raw_environment_config)
 
 
-def log_runner(stream: IO[str], text: str):
-    message = f"[RUNNER] {asctime()} -- {text}"
-    print(message)
-
-    stream.seek(0, SEEK_END)
-    print(message, file=stream)
-
-
 def main():
     parser = ArgumentParser()
     parser.add_argument("environment", help=f"Environment from {CONFIG_FILE.name}")
@@ -104,12 +107,19 @@ def main():
             stderr=stderr,
         ) as process,
     ):
-        log_runner(stdout, f"Process with pid {process.pid} started in {argv.environment} environment.")
+        logger.info(f"Process with pid {process.pid} started in {argv.environment} environment.")
 
-        with suppress(KeyboardInterrupt):
-            process.wait()
+        try:
+            exit_code = process.wait()
+        except KeyboardInterrupt:
+            logger.info(f"Runner interrupted (Ctrl+C)")
+        else:
+            message = f"Process exited with code {exit_code}"
 
-        log_runner(stdout, "Runner exited")
+            if exit_code:
+                logger.error(message)
+            else:
+                logger.info(message)
 
 
 if __name__ == "__main__":
