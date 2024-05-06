@@ -1,0 +1,9 @@
+jar_path = "app/build/libs/memeBotTelegramBot.jar"
+
+[stdout]
+path = "log.txt"
+mode = "w"
+
+[stderr]
+path = "log.txt"
+mode = "w"
