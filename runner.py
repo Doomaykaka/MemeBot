@@ -28,6 +28,7 @@ __version__ = "1.0.1"
 from argparse import ArgumentParser
 from contextlib import suppress
 from dataclasses import dataclass
+from io import SEEK_END
 from pathlib import Path
 from subprocess import Popen
 from time import asctime
@@ -82,6 +83,8 @@ def load_config(environment: str) -> Config:
 def log_runner(stream: IO[str], text: str):
     message = f"[RUNNER] {asctime()} -- {text}"
     print(message)
+
+    stream.seek(0, SEEK_END)
     print(message, file=stream)
 
 
