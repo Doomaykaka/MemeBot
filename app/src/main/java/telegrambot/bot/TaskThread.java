@@ -52,7 +52,11 @@ public class TaskThread extends Thread {
                 break;
             }
 
-            bot.executeRemoteCommand(lastChatId, "get_random_task");
+            try {
+                bot.executeRemoteCommand(lastChatId, "get_random_task");
+            } catch (NullPointerException e) {
+                continue;
+            }
         }
     }
 
