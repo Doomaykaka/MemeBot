@@ -56,8 +56,8 @@ public class BotInitializer {
     private static void initializeBackendHttpClient() {
         Gson gson = new GsonBuilder().setLenient().create();
 
-        OkHttpClient httpClient = new OkHttpClient.Builder().connectTimeout(20, TimeUnit.SECONDS)
-                .writeTimeout(20, TimeUnit.SECONDS).readTimeout(30, TimeUnit.SECONDS).build();
+        OkHttpClient httpClient = new OkHttpClient.Builder().connectTimeout(120, TimeUnit.SECONDS)
+                .writeTimeout(120, TimeUnit.SECONDS).readTimeout(120, TimeUnit.SECONDS).build();
         String botBackendURL = App.getBotConfig().botBackendUrl;
         Retrofit retrofitClient = new Retrofit.Builder().client(httpClient).baseUrl(botBackendURL)
                 .addConverterFactory(GsonConverterFactory.create(gson)).build();

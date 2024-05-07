@@ -1,9 +1,9 @@
 package telegrambot.bot;
 
 import java.io.IOException;
+import java.net.SocketTimeoutException;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeParseException;
-import java.util.List;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -44,9 +44,12 @@ public class BotRequests {
             }
 
             task = ((Task) responseBody.body());
-
         } catch (IOException e) {
             e.printStackTrace();
+
+            if (e.getClass().equals(SocketTimeoutException.class)) {
+                App.getLog().warning("Get task timeout");
+            }
         }
 
         return task;
@@ -75,9 +78,12 @@ public class BotRequests {
 
                 nextSendTime = ZonedDateTime.parse(time);
             }
-
         } catch (IOException | DateTimeParseException e) {
             e.printStackTrace();
+
+            if (e.getClass().equals(SocketTimeoutException.class)) {
+                App.getLog().warning("Get next send time timeout");
+            }
         }
 
         return nextSendTime;
@@ -110,9 +116,12 @@ public class BotRequests {
                 LoginResult loginResult = ((LoginResult) responseBody.body());
                 token = loginResult.getToken();
             }
-
         } catch (IOException e) {
             e.printStackTrace();
+
+            if (e.getClass().equals(SocketTimeoutException.class)) {
+                App.getLog().warning("Login timeout");
+            }
         }
 
         return token;

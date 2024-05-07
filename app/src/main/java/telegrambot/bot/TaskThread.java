@@ -41,6 +41,7 @@ public class TaskThread extends Thread {
 
         while (true) {
             ZonedDateTime nextSendTime = BotRequests.sendNextSendTaskTimeRequest();
+
             long currentTime = ZonedDateTime.now().toEpochSecond();
             long nextTime = nextSendTime.toEpochSecond();
 
@@ -52,11 +53,7 @@ public class TaskThread extends Thread {
                 break;
             }
 
-            try {
-                bot.executeRemoteCommand(lastChatId, "get_random_task");
-            } catch (NullPointerException e) {
-                continue;
-            }
+            bot.executeRemoteCommand(lastChatId, "get_random_task");
         }
     }
 
