@@ -56,8 +56,8 @@ public class BotInitializer {
     private static void initializeBackendHttpClient() {
         Gson gson = new GsonBuilder().setLenient().create();
 
-        OkHttpClient httpClient = new OkHttpClient.Builder().connectTimeout(120, TimeUnit.SECONDS)
-                .writeTimeout(120, TimeUnit.SECONDS).readTimeout(120, TimeUnit.SECONDS).build();
+        OkHttpClient httpClient = new OkHttpClient.Builder().connectTimeout(4 * 60, TimeUnit.SECONDS)
+                .writeTimeout(4 * 60, TimeUnit.SECONDS).readTimeout(4 * 60, TimeUnit.SECONDS).build();
         String botBackendURL = App.getBotConfig().botBackendUrl;
         Retrofit retrofitClient = new Retrofit.Builder().client(httpClient).baseUrl(botBackendURL)
                 .addConverterFactory(GsonConverterFactory.create(gson)).build();
@@ -78,7 +78,7 @@ public class BotInitializer {
     private static void createBot() throws TelegramApiException {
         TelegramBot bot = new TelegramBot();
 
-        bot.getOptions().setGetUpdatesTimeout(120);
+        bot.getOptions().setGetUpdatesTimeout(4 * 60);
 
         TelegramBotsApi botsApi;
         botsApi = new TelegramBotsApi(DefaultBotSession.class);
