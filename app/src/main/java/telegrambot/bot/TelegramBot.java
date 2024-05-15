@@ -183,6 +183,11 @@ public class TelegramBot extends TelegramLongPollingBot {
     public void executeRemoteCommand(long chatId, String command) {
         Task backendTask = BotRequests.getTaskByCommand(command);
 
+        if (backendTask == null) {
+            App.getLog().info("Media is null");
+            return;
+        }
+
         boolean taskHaveImage = backendTask.getImage() != null;
         boolean taskHaveText = backendTask.getText() != null;
 
