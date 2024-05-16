@@ -44,6 +44,16 @@ public class BotRequests {
             }
 
             task = ((Task) responseBody.body());
+
+            if (task == null) {
+                /**
+                 * TODO:
+                 * Вывести в лог:
+                 *   - статус ответа
+                 *   - заголовки ответа
+                 *   - сырое (в виде строки) тело ответа
+                 */
+            }
         } catch (IOException e) {
             e.printStackTrace();
 
