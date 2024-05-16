@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.SocketTimeoutException;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeParseException;
+import okhttp3.Headers;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -39,20 +40,13 @@ public class BotRequests {
         try {
             responseBody = response.execute();
 
-            if (responseBody == null) {
-                throw new IOException("Null response");
-            }
-
-            task = ((Task) responseBody.body());
+            task = responseBody.body();
 
             if (task == null) {
-                /**
-                 * TODO:
-                 * Вывести в лог:
-                 *   - статус ответа
-                 *   - заголовки ответа
-                 *   - сырое (в виде строки) тело ответа
-                 */
+                Headers headers = responseBody.headers();
+
+                App.getLog().warning("HTTP code: " + responseBody.code());
+                App.getLog().warning("HTTP headers: " + headers.toString());
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -77,7 +71,7 @@ public class BotRequests {
         TelegramBotBackendService botService = BotInitializer.getBackendHttpClientService();
         Call<ResponseBody> response = botService.getNextTaskTime(BotInitializer.getToken());
 
-        String time;
+        String time = null;
 
         Response<ResponseBody> responseBody = null;
         try {
@@ -87,6 +81,13 @@ public class BotRequests {
                 time = responseBody.body().string();
 
                 nextSendTime = ZonedDateTime.parse(time);
+            }
+
+            if (time == null) {
+                Headers headers = responseBody.headers();
+
+                App.getLog().warning("HTTP code: " + responseBody.code());
+                App.getLog().warning("HTTP headers: " + headers.toString());
             }
         } catch (IOException | DateTimeParseException e) {
             e.printStackTrace();
@@ -120,11 +121,18 @@ public class BotRequests {
 
         Response<LoginResult> responseBody = null;
         try {
-            responseBody = response.execute();
+            responseBody = response.execute();;
 
             if (responseBody != null) {
-                LoginResult loginResult = ((LoginResult) responseBody.body());
+                LoginResult loginResult = responseBody.body();
                 token = loginResult.getToken();
+            }
+
+            if (responseBody == null) {
+                Headers headers = responseBody.headers();
+
+                App.getLog().warning("HTTP code: " + responseBody.code());
+                App.getLog().warning("HTTP headers: " + headers.toString());
             }
         } catch (IOException e) {
             e.printStackTrace();
