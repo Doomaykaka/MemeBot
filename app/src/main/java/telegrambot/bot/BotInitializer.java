@@ -2,7 +2,10 @@ package telegrambot.bot;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
@@ -43,9 +46,6 @@ public class BotInitializer {
         App.getLog().info("HTTP client initialization");
         initializeBackendHttpClient();
 
-        App.getLog().info("Getting token");
-        login();
-
         App.getLog().info("Creating telegram bot");
         createBot();
     }
@@ -57,19 +57,13 @@ public class BotInitializer {
         Gson gson = new GsonBuilder().setLenient().create();
 
         OkHttpClient httpClient = new OkHttpClient.Builder().connectTimeout(4 * 60, TimeUnit.SECONDS)
-                .writeTimeout(4 * 60, TimeUnit.SECONDS).readTimeout(4 * 60, TimeUnit.SECONDS).build();
+                .writeTimeout(4 * 60, TimeUnit.SECONDS).readTimeout(4 * 60, TimeUnit.SECONDS)
+                .addInterceptor(new BotRequestsInterceptor()).build();
         String botBackendURL = App.getBotConfig().botBackendUrl;
         Retrofit retrofitClient = new Retrofit.Builder().client(httpClient).baseUrl(botBackendURL)
                 .addConverterFactory(GsonConverterFactory.create(gson)).build();
 
         backendHttpClientService = retrofitClient.create(TelegramBotBackendService.class);
-    }
-
-    /**
-     * The method performs authorization on the server
-     */
-    private static void login() {
-        token = "Bearer " + BotRequests.sendLoginRequest();
     }
 
     /**
@@ -102,6 +96,10 @@ public class BotInitializer {
      */
     public static String getToken() {
         return token;
+    }
+
+    public static void setToken(String token) {
+        BotInitializer.token = token;
     }
 
     /**
