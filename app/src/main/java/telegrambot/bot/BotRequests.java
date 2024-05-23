@@ -77,7 +77,7 @@ public class BotRequests {
         try {
             responseBody = response.execute();
 
-            if (responseBody != null) {
+            if (responseBody != null && responseBody.body() != null) {
                 time = responseBody.body().string();
 
                 nextSendTime = ZonedDateTime.parse(time);
@@ -123,12 +123,12 @@ public class BotRequests {
         try {
             responseBody = response.execute();;
 
-            if (responseBody != null) {
+            if (responseBody != null && responseBody.body() != null) {
                 LoginResult loginResult = responseBody.body();
                 token = loginResult.getToken();
             }
 
-            if (responseBody == null) {
+            if (responseBody == null || responseBody.body() == null) {
                 Headers headers = responseBody.headers();
 
                 App.getLog().warning("HTTP code: " + responseBody.code());
