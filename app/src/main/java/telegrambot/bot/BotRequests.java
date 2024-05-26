@@ -138,12 +138,13 @@ public class BotRequests {
      */
     private static <T> Response<T> executeWithRetry(Call<T> response) {
         Response<T> responseBody = null;
+        Call<T> responseClone = response.clone();
 
         try {
             responseBody = response.execute();
 
             if (responseBody != null && responseBody.code() == HttpURLConnection.HTTP_UNAUTHORIZED) {
-                responseBody = response.execute();
+                responseBody = responseClone.execute();
             }
 
         } catch (IOException e) {
