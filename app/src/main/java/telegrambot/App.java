@@ -66,10 +66,22 @@ public class App {
         return log;
     }
 
+    /**
+     * Method for changing bot configuration
+     *
+     * @param botConfig
+     *            new bot configuration
+     */
     public static void setBotConfig(Config botConfig) {
         App.botConfig = botConfig;
     }
 
+    /**
+     * Method for changing the logger
+     *
+     * @param log
+     *            new logger
+     */
     public static void setLog(Logger log) {
         App.log = log;
     }

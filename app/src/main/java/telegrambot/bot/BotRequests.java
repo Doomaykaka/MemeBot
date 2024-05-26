@@ -1,6 +1,7 @@
 package telegrambot.bot;
 
 import java.io.IOException;
+import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeParseException;
@@ -27,6 +28,8 @@ public class BotRequests {
     /**
      * A method that makes a request to get a task that the bot needs to perform
      *
+     * @param command
+     *            The command to be sent to the server
      * @return A method that makes a request to get a task that the bot needs to
      *         perform
      */
@@ -37,23 +40,16 @@ public class BotRequests {
         Call<Task> response = botService.getTaskByCommand(BotInitializer.getToken(), command);
 
         Response<Task> responseBody = null;
-        try {
-            responseBody = response.execute();
 
-            task = responseBody.body();
+        responseBody = executeWithRetry(response);
 
-            if (task == null) {
-                Headers headers = responseBody.headers();
+        task = responseBody.body();
 
-                App.getLog().warning("HTTP code: " + responseBody.code());
-                App.getLog().warning("HTTP headers: " + headers.toString());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (task == null) {
+            Headers headers = responseBody.headers();
 
-            if (e.getClass().equals(SocketTimeoutException.class)) {
-                App.getLog().warning("Get task timeout");
-            }
+            App.getLog().warning("HTTP code: " + responseBody.code());
+            App.getLog().warning("HTTP headers: " + headers.toString());
         }
 
         return task;
@@ -75,7 +71,7 @@ public class BotRequests {
 
         Response<ResponseBody> responseBody = null;
         try {
-            responseBody = response.execute();
+            responseBody = executeWithRetry(response);
 
             if (responseBody != null && responseBody.body() != null) {
                 time = responseBody.body().string();
@@ -91,10 +87,6 @@ public class BotRequests {
             }
         } catch (IOException | DateTimeParseException e) {
             e.printStackTrace();
-
-            if (e.getClass().equals(SocketTimeoutException.class)) {
-                App.getLog().warning("Get next send time timeout");
-            }
         }
 
         return nextSendTime;
@@ -120,20 +112,40 @@ public class BotRequests {
         Call<LoginResult> response = botService.login(requestBody);
 
         Response<LoginResult> responseBody = null;
+        responseBody = executeWithRetry(response);
+
+        if (responseBody != null && responseBody.body() != null) {
+            LoginResult loginResult = responseBody.body();
+            token = loginResult.getToken();
+        }
+
+        if (responseBody == null || responseBody.body() == null) {
+            Headers headers = responseBody.headers();
+
+            App.getLog().warning("HTTP code: " + responseBody.code());
+            App.getLog().warning("HTTP headers: " + headers.toString());
+        }
+
+        return token;
+    }
+
+    /**
+     * A method that executes an http request and tries to restart it if it fails
+     *
+     * @param response
+     *            An object after processing which you can receive an http response
+     * @return Object containing http response
+     */
+    private static <T> Response<T> executeWithRetry(Call<T> response) {
+        Response<T> responseBody = null;
+
         try {
-            responseBody = response.execute();;
+            responseBody = response.execute();
 
-            if (responseBody != null && responseBody.body() != null) {
-                LoginResult loginResult = responseBody.body();
-                token = loginResult.getToken();
+            if (responseBody != null && responseBody.code() == HttpURLConnection.HTTP_UNAUTHORIZED) {
+                responseBody = response.execute();
             }
 
-            if (responseBody == null || responseBody.body() == null) {
-                Headers headers = responseBody.headers();
-
-                App.getLog().warning("HTTP code: " + responseBody.code());
-                App.getLog().warning("HTTP headers: " + headers.toString());
-            }
         } catch (IOException e) {
             e.printStackTrace();
 
@@ -142,6 +154,6 @@ public class BotRequests {
             }
         }
 
-        return token;
+        return responseBody;
     }
 }

@@ -129,19 +129,24 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="../models/Task.html" title="class in telegrambot.models">Task</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getTaskByCommand(java.lang.String)" class="member-name-link">getTaskByCommand</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;command)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>private static &lt;T&gt;&nbsp;retrofit2.Response<wbr>&lt;T&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#executeWithRetry(retrofit2.Call)" class="member-name-link">executeWithRetry</a><wbr>(retrofit2.Call&lt;T&gt;&nbsp;response)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">A method that executes an http request and tries to restart it if it fails</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="../models/Task.html" title="class in telegrambot.models">Task</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getTaskByCommand(java.lang.String)" class="member-name-link">getTaskByCommand</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;command)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">A method that makes a request to get a task that the bot needs to perform</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#sendLoginRequest()" class="member-name-link">sendLoginRequest</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#sendLoginRequest()" class="member-name-link">sendLoginRequest</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Method that performs an authorization request on the server</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/ZonedDateTime.html" title="class or interface in java.time" class="external-link">ZonedDateTime</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#sendNextSendTaskTimeRequest()" class="member-name-link">sendNextSendTaskTimeRequest</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/ZonedDateTime.html" title="class or interface in java.time" class="external-link">ZonedDateTime</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#sendNextSendTaskTimeRequest()" class="member-name-link">sendNextSendTaskTimeRequest</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
 <div class="block">Method that performs a request to get the time to start next task</div>
 </div>
 </div>
@@ -181,6 +186,8 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="../models/Task.html" title="class in telegrambot.models">Task</a></span>&nbsp;<span class="element-name">getTaskByCommand</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;command)</span></div>
 <div class="block">A method that makes a request to get a task that the bot needs to perform</div>
 <dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>command</code> - The command to be sent to the server</dd>
 <dt>Returns:</dt>
 <dd>A method that makes a request to get a task that the bot needs to
          perform</dd>
@@ -206,6 +213,20 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>token for authorization on the server</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="executeWithRetry(retrofit2.Call)">
+<h3>executeWithRetry</h3>
+<div class="member-signature"><span class="modifiers">private static</span>&nbsp;<span class="type-parameters">&lt;T&gt;</span>&nbsp;<span class="return-type">retrofit2.Response&lt;T&gt;</span>&nbsp;<span class="element-name">executeWithRetry</span><wbr><span class="parameters">(retrofit2.Call&lt;T&gt;&nbsp;response)</span></div>
+<div class="block">A method that executes an http request and tries to restart it if it fails</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>response</code> - An object after processing which you can receive an http
+                 response</dd>
+<dt>Returns:</dt>
+<dd>Object containing http response</dd>
 </dl>
 </section>
 </li>

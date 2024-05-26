@@ -96,6 +96,18 @@ loadScripts(document, 'script');</script>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">BotRequestsInterceptor</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
 implements okhttp3.Interceptor</span></div>
+<div class="block">Request Interceptor</div>
+<dl class="notes">
+<dt>Since:</dt>
+<dd>2024-05-26</dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list">
+<li><a href="BotInitializer.html" title="class in telegrambot.bot"><code>BotInitializer</code></a></li>
+<li><a href="BotRequests.html" title="class in telegrambot.bot"><code>BotRequests</code></a></li>
+</ul>
+</dd>
+</dl>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -134,7 +146,9 @@ implements okhttp3.Interceptor</span></div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>okhttp3.Response</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#intercept(okhttp3.Interceptor.Chain)" class="member-name-link">intercept</a><wbr>(okhttp3.Interceptor.Chain&nbsp;chain)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Method that fires when a request is executed</div>
+</div>
 </div>
 </div>
 </div>
@@ -171,9 +185,15 @@ implements okhttp3.Interceptor</span></div>
 <h3>intercept</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">okhttp3.Response</span>&nbsp;<span class="element-name">intercept</span><wbr><span class="parameters">(okhttp3.Interceptor.Chain&nbsp;chain)</span>
                            throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></span></div>
+<div class="block">Method that fires when a request is executed</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code>intercept</code>&nbsp;in interface&nbsp;<code>okhttp3.Interceptor</code></dd>
+<dt>Parameters:</dt>
+<dd><code>chain</code> - Connection object</dd>
+<dt>Returns:</dt>
+<dd>A method that makes a request to get a task that the bot needs to
+         perform</dd>
 <dt>Throws:</dt>
 <dd><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/IOException.html" title="class or interface in java.io" class="external-link">IOException</a></code></dd>
 </dl>
