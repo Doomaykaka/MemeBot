@@ -41,7 +41,9 @@ public class BotRequests {
 
         Response<Task> responseBody = null;
 
-        responseBody = executeWithRetry(response);
+        String requestName = "getTaskByCommand";
+        String[] requestParams = new String[]{BotInitializer.getToken(), command};
+        responseBody = executeWithRetry(response, requestName, requestParams);
 
         task = responseBody.body();
 
@@ -71,7 +73,9 @@ public class BotRequests {
 
         Response<ResponseBody> responseBody = null;
         try {
-            responseBody = executeWithRetry(response);
+            String requestName = "getNextTaskTime";
+            String[] requestParams = new String[]{BotInitializer.getToken()};
+            responseBody = executeWithRetry(response, requestName, requestParams);
 
             if (responseBody != null && responseBody.body() != null) {
                 time = responseBody.body().string();
@@ -112,7 +116,10 @@ public class BotRequests {
         Call<LoginResult> response = botService.login(requestBody);
 
         Response<LoginResult> responseBody = null;
-        responseBody = executeWithRetry(response);
+
+        String requestName = "login";
+        String[] requestParams = new String[]{};
+        responseBody = executeWithRetry(response, requestName, requestParams);
 
         if (responseBody != null && responseBody.body() != null) {
             LoginResult loginResult = responseBody.body();
@@ -134,17 +141,35 @@ public class BotRequests {
      *
      * @param response
      *            An object after processing which you can receive an http response
+     * @param requestName
+     *            Name of the request that may need to be repeated
+     * @param params
+     *            Request parameters
      * @return Object containing http response
      */
-    private static <T> Response<T> executeWithRetry(Call<T> response) {
+    private static <T> Response<T> executeWithRetry(Call<T> response, String requestName, String[] params) {
         Response<T> responseBody = null;
-        Call<T> responseClone = response.clone();
+        Call<T> responseWithNewToken = null;
 
         try {
             responseBody = response.execute();
 
             if (responseBody != null && responseBody.code() == HttpURLConnection.HTTP_UNAUTHORIZED) {
-                responseBody = responseClone.execute();
+                TelegramBotBackendService botService = BotInitializer.getBackendHttpClientService();
+                String newToken = BotInitializer.getToken();
+
+                switch (requestName) {
+                    case "getTaskByCommand" :
+                        responseWithNewToken = (Call<T>) botService.getTaskByCommand(newToken, params[1]);
+                        break;
+                    case "getNextTaskTime" :
+                        responseWithNewToken = (Call<T>) botService.getNextTaskTime(newToken);
+                        break;
+                    default :
+                        throw new IOException("Bad request retry data");
+                }
+
+                responseBody = responseWithNewToken.execute();
             }
 
         } catch (IOException e) {

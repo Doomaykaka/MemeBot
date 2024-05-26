@@ -2,11 +2,9 @@ package telegrambot.bot;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
-import okhttp3.Headers;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
-import telegrambot.models.Task;
 
 /**
  * Request Interceptor

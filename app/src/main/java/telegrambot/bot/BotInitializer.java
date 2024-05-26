@@ -98,6 +98,12 @@ public class BotInitializer {
         return token;
     }
 
+    /**
+     * Method for changing a token for authorization on the server
+     *
+     * @param token
+     *            new token
+     */
     public static void setToken(String token) {
         BotInitializer.token = token;
     }
