@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
+import okhttp3.MultipartBody.Part;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
@@ -42,6 +43,7 @@ public class TelegramBot extends TelegramLongPollingBot {
      * Bot token
      */
     private final String BOT_TOKEN;
+    private final int MAX_TEXT_MESSAGE_SIZE = 4096;
 
     /**
      * A constructor that sets the telegram bot settings and starts scheduled tasks
@@ -145,12 +147,47 @@ public class TelegramBot extends TelegramLongPollingBot {
      *            message to be sent
      */
     private void sendMessage(Long chatId, String textToSend) {
-        SendMessage sendMessage = new SendMessage();
-        sendMessage.setChatId(String.valueOf(chatId));
-        sendMessage.setText(textToSend);
+        if (textToSend.length() < MAX_TEXT_MESSAGE_SIZE) {
+            sendTextPart(chatId, textToSend);
+        } else {
+            int textPartsCount = textToSend.length() / MAX_TEXT_MESSAGE_SIZE;
+
+            if (textToSend.length() % MAX_TEXT_MESSAGE_SIZE > 0) {
+                textPartsCount++;
+            }
+
+            for (int part = 0; part < textPartsCount; part++) {
+                int textPartStartInd = part * MAX_TEXT_MESSAGE_SIZE;
+                int textPartEndInd = (part + 1) * MAX_TEXT_MESSAGE_SIZE;
+
+                if (textPartEndInd >= textToSend.length() - 1) {
+                    textPartEndInd = textToSend.length() - 1;
+                }
+
+                String textPart = textToSend.substring(textPartStartInd, textPartEndInd);
+
+                sendTextPart(chatId, textPart);
+            }
+        }
+    }
+
+    /**
+     * Method for sending a text message part to chat
+     *
+     * @param chatId
+     *            ID of the chat to which the message should be sent
+     * @param partToSend
+     *            message part to be sent
+     */
+    private void sendTextPart(Long chatId, String partToSend) {
+        SendMessage sendPart = new SendMessage();
+        sendPart.setChatId(String.valueOf(chatId));
+        sendPart.setText(partToSend);
+
         try {
-            execute(sendMessage);
+            execute(sendPart);
         } catch (TelegramApiException e) {
+            App.getLog().info("Send text part error");
             e.printStackTrace();
         }
     }
@@ -165,9 +202,11 @@ public class TelegramBot extends TelegramLongPollingBot {
      */
     private void sendPhoto(Long chatId, SendPhoto photoToSend) {
         photoToSend.setChatId(String.valueOf(chatId));
+
         try {
             execute(photoToSend);
         } catch (TelegramApiException e) {
+            App.getLog().info("Send photo error");
             e.printStackTrace();
         }
     }
@@ -262,6 +301,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         try {
             execute(keyboardMessage);
         } catch (TelegramApiException e) {
+            App.getLog().info("Generate menu error");
             e.printStackTrace();
         }
     }

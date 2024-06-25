@@ -141,9 +141,12 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color">
 <div class="block">Chat ID with which the telegram bot will work</div>
 </div>
-<div class="col-first odd-row-color"><code>private <a href="TaskThread.html" title="class in telegrambot.bot">TaskThread</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#senderThread" class="member-name-link">senderThread</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first odd-row-color"><code>private final int</code></div>
+<div class="col-second odd-row-color"><code><a href="#MAX_TEXT_MESSAGE_SIZE" class="member-name-link">MAX_TEXT_MESSAGE_SIZE</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>private <a href="TaskThread.html" title="class in telegrambot.bot">TaskThread</a></code></div>
+<div class="col-second even-row-color"><code><a href="#senderThread" class="member-name-link">senderThread</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">Thread performing tasks</div>
 </div>
 </div>
@@ -223,6 +226,12 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Method for sending an image to chat</div>
 </div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>private void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#sendTextPart(java.lang.Long,java.lang.String)" class="member-name-link">sendTextPart</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;chatId,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;partToSend)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Method for sending a text message part to chat</div>
+</div>
 </div>
 </div>
 </div>
@@ -281,6 +290,20 @@ loadScripts(document, 'script');</script>
 <h3>BOT_TOKEN</h3>
 <div class="member-signature"><span class="modifiers">private final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">BOT_TOKEN</span></div>
 <div class="block">Bot token</div>
+</section>
+</li>
+<li>
+<section class="detail" id="MAX_TEXT_MESSAGE_SIZE">
+<h3>MAX_TEXT_MESSAGE_SIZE</h3>
+<div class="member-signature"><span class="modifiers">private final</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">MAX_TEXT_MESSAGE_SIZE</span></div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="tag-list">
+<li><a href="../../constant-values.html#telegrambot.bot.TelegramBot.MAX_TEXT_MESSAGE_SIZE">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -365,6 +388,19 @@ loadScripts(document, 'script');</script>
 <dt>Parameters:</dt>
 <dd><code>chatId</code> - ID of the chat to which the message should be sent</dd>
 <dd><code>textToSend</code> - message to be sent</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="sendTextPart(java.lang.Long,java.lang.String)">
+<h3>sendTextPart</h3>
+<div class="member-signature"><span class="modifiers">private</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">sendTextPart</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Long.html" title="class or interface in java.lang" class="external-link">Long</a>&nbsp;chatId,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;partToSend)</span></div>
+<div class="block">Method for sending a text message part to chat</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>chatId</code> - ID of the chat to which the message should be sent</dd>
+<dd><code>partToSend</code> - message part to be sent</dd>
 </dl>
 </section>
 </li>

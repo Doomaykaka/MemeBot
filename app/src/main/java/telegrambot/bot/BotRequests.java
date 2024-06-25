@@ -90,6 +90,7 @@ public class BotRequests {
                 App.getLog().warning("HTTP headers: " + headers.toString());
             }
         } catch (IOException | DateTimeParseException e) {
+            App.getLog().warning("Task next send time parse failed");
             e.printStackTrace();
         }
 
