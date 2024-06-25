@@ -40,21 +40,21 @@ public class TaskThread extends Thread {
     public void run() {
 
         while (true) {
-            ZonedDateTime nextSendTime = BotRequests.sendNextSendTaskTimeRequest();
-
-            long currentTime = ZonedDateTime.now().toEpochSecond();
-            long nextTime = nextSendTime.toEpochSecond();
-
-            long updateDelta = nextTime - currentTime;
-
             try {
+                ZonedDateTime nextSendTime = BotRequests.sendNextSendTaskTimeRequest();
+
+                long currentTime = ZonedDateTime.now().toEpochSecond();
+                long nextTime = nextSendTime.toEpochSecond();
+
+                long updateDelta = nextTime - currentTime;
+
                 sleep(updateDelta * 1000);
             } catch (InterruptedException e) {
                 break;
             } catch (NullPointerException e) {
                 App.getLog().info("Task next send time is null");
                 e.printStackTrace();
-                break;
+                continue;
             }
 
             bot.executeRemoteCommand(lastChatId, "get_random_task");
