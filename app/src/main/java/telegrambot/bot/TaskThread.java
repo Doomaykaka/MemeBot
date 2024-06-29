@@ -38,6 +38,7 @@ public class TaskThread extends Thread {
      * will be completed, waits for this time and executes the task
      */
     public void run() {
+        App.getLog().info("Sender thread is runned");
 
         while (true) {
             try {
@@ -50,6 +51,7 @@ public class TaskThread extends Thread {
 
                 sleep(updateDelta * 1000);
             } catch (InterruptedException e) {
+                App.getLog().info("Sender thread is interrupted");
                 break;
             } catch (NullPointerException e) {
                 App.getLog().info("Task next send time is null");
@@ -59,6 +61,8 @@ public class TaskThread extends Thread {
 
             bot.executeRemoteCommand(lastChatId, "get_random_task");
         }
+
+        App.getLog().info("Sender thread is stoped");
     }
 
     /**
