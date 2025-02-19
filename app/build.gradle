@@ -23,7 +23,7 @@ dependencies {
     // This dependency is used by the application.
     implementation libs.guava
 
-    implementation 'org.telegram:telegrambots:6.9.0'
+    implementation 'org.telegram:telegrambots:6.9.7.0'
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.googlecode.json-simple:json-simple:1.1.1'
@@ -63,8 +63,8 @@ versioner {
 
     startFrom {
         major = 1
-        minor = 2
-        patch = 10
+        minor = 3
+        patch = 0
     }
 }
 

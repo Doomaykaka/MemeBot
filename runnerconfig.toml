@@ -1,6 +1,7 @@
 [production]
 
 jar_path = "memeBotTelegramBot.jar"
+correct_exit_codes = [0, 143]
 
 [production.stdout]
 path = "bot.log"
@@ -13,6 +14,7 @@ mode = "w"
 [testing]
 
 jar_path = "app/build/libs/memeBotTelegramBot.jar"
+correct_exit_codes = [0, 251658240]
 
 [testing.stdout]
 path = "out.log"

@@ -23,16 +23,15 @@ SOFTWARE.
 """
 
 __author__ = "v01d"
-__version__ = "1.1.0"
+__version__ = "1.2.0"
 
 from argparse import ArgumentParser
 from dataclasses import dataclass
 from logging import INFO, basicConfig, getLogger
 from pathlib import Path
 from subprocess import Popen
-from typing import Any, Final
-
 from tomllib import load
+from typing import Any, Final
 
 
 CONFIG_FILE: Final[Path] = Path("./runnerconfig.toml").resolve()
@@ -66,6 +65,7 @@ class Config:
     jar_path: str
     stdout_file: StreamFile
     stderr_file: StreamFile
+    correct_exit_codes: frozenset[int]
 
     @classmethod
     def from_raw(cls, raw: dict[str, Any]):
@@ -76,6 +76,7 @@ class Config:
             raw["jar_path"],
             stdout,
             stderr,
+            frozenset(raw["correct_exit_codes"]),
         )
 
 
@@ -91,13 +92,24 @@ def load_config(environment: str) -> Config:
     return Config.from_raw(raw_environment_config)
 
 
-def main():
-    parser = ArgumentParser()
-    parser.add_argument("environment", help=f"Environment from {CONFIG_FILE.name}")
-    argv = parser.parse_args()
+def wait(process: Popen) -> int:
+    try:
+        exit_code = process.wait()
+    except KeyboardInterrupt:
+        logger.info(f"Runner interrupted (Ctrl+C)")
+        return 0
+    else:
+        message = f"Process exited with code {exit_code}"
 
-    config = load_config(argv.environment)
+        if exit_code:
+            logger.error(message)
+        else:
+            logger.info(message)
 
+        return exit_code
+
+
+def run_instance(config: Config, environment: str) -> int:
     with (
         config.stdout_file.path.open(config.stdout_file.mode, encoding="utf-8") as stdout,
         config.stderr_file.path.open(config.stderr_file.mode, encoding="utf-8") as stderr,
@@ -107,19 +119,25 @@ def main():
             stderr=stderr,
         ) as process,
     ):
-        logger.info(f"Process with pid {process.pid} started in {argv.environment} environment.")
+        logger.info(f"Process with pid {process.pid} started in {environment} environment.")
 
-        try:
-            exit_code = process.wait()
-        except KeyboardInterrupt:
-            logger.info(f"Runner interrupted (Ctrl+C)")
-        else:
-            message = f"Process exited with code {exit_code}"
+        exit_code = wait(process)
 
-            if exit_code:
-                logger.error(message)
-            else:
-                logger.info(message)
+        return exit_code
+
+
+def main():
+    parser = ArgumentParser()
+    parser.add_argument("environment", help=f"Environment from {CONFIG_FILE.name}")
+    argv = parser.parse_args()
+
+    config = load_config(argv.environment)
+
+    while True:
+        exit_code = run_instance(config, argv.environment)
+
+        if exit_code in config.correct_exit_codes:
+            break
 
 
 if __name__ == "__main__":
